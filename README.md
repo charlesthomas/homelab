@@ -48,8 +48,7 @@ install `kube-vip` as a daemonset on all control-plane nodes (all 4 nodes for no
 doing so will create a virtual IP that points to any active control-plane node in the cluster via 192.168.1.3
 
 ```bash
-kubectl apply -f 0-kube-vip/0-rbac.yaml && \
-kubectl apply -f 0-kube-vip/1-daemonset.yaml && \
+helm install kube-vip 0-kube-vip/ && \
 ping 192.168.1.3
 ```
 

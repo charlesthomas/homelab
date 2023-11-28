@@ -1,0 +1,3 @@
+!!! don't forget to update ~/.kube/config !!!
+try:
+ping {{ .Values.address }}

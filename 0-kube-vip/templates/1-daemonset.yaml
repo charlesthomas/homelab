@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: kube-vip
-  namespace: kube-system
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
-      name: kube-vip
+      name: {{ .Values.name }}
   template:
     metadata:
       labels:
-        name: kube-vip
+        name: {{ .Values.name }}
     spec:
       affinity:
         nodeAffinity:
@@ -31,9 +31,9 @@ spec:
         - name: port
           value: "6443"
         - name: vip_interface
-          value: enp1s0
+          value: {{ .Values.vip_interface }}
         - name: vip_cidr
-          value: "32"
+          value: "{{ .Values.vip_cidr }}"
         - name: cp_enable
           value: "true"
         - name: cp_namespace
@@ -51,10 +51,10 @@ spec:
         - name: vip_retryperiod
           value: "1"
         - name: address
-          value: 192.168.1.3
-        image: ghcr.io/kube-vip/kube-vip:v0.6.3
-        imagePullPolicy: IfNotPresent
-        name: kube-vip
+          value: {{ .Values.address }}
+        image: ghcr.io/kube-vip/kube-vip:{{ .Values.imageTag }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        name: {{ .Values.name }}
         resources: {}
         securityContext:
           capabilities:
@@ -63,7 +63,7 @@ spec:
             - NET_RAW
             - SYS_TIME
       hostNetwork: true
-      serviceAccountName: kube-vip
+      serviceAccountName: {{ .Values.name }}
       tolerations:
       - effect: NoSchedule
         operator: Exists
