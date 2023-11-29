@@ -1,0 +1,17 @@
+persistence:
+  defaultClassReplicaCount: 2
+
+defaultSettings:
+  backupTarget: ~
+  backupTargetCredentialSecret: ~
+  defaultLonghornStaticStorageClass: longhorn
+
+ingress:
+  ## Set to true to enable ingress record generation
+  enabled: false
+
+  ## Add ingressClassName to the Ingress
+  ## Can replace the kubernetes.io/ingress.class annotation on v1.18+
+  ingressClassName: ~
+
+namespaceOverride: longhorn
