@@ -8,7 +8,7 @@ install `kube-vip` as a daemonset on all control-plane nodes (all 4 nodes for no
 
 
 ```bash
-helm install kube-vip 0-kube-vip/ && \
+helm upgrade --install kube-vip 0-kube-vip/ && \
 ping 192.168.1.3
 ```
 

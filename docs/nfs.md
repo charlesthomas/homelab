@@ -10,6 +10,6 @@ although you may need to build the dependency first
 
 ```bash
 helm dependency build 10-nfs --skip-refresh && \
-helm install nfs 10-nfs/ --create-namespace --namespace nfs --values 10-nfs/values.yaml
+helm upgrade --install --create-namespace --namespace nfs nfs 10-nfs/ --values 10-nfs/values.yaml
 ```
 
