@@ -18,3 +18,6 @@ they increment by tens for future-proofing
   - [nfs](/docs/nfs.md)
 - observability
   - [influxdb2](/docs/influxdb2.md)
+  - [telegraf](/docs/telegraf.md)
+- disaster recovery
+  - [Was the raft log corrupted, truncated, or lost?](/docs/raft.md)
