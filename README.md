@@ -16,3 +16,5 @@ they increment by tens for future-proofing
 - [storage](/docs/storage.md)
   - [longhorn](/docs/longhorn.md)
   - [nfs](/docs/nfs.md)
+- observability
+  - [influxdb2](/docs/influxdb2.md)
