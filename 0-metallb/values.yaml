@@ -1,0 +1,12 @@
+controller:
+  logLevel: debug
+  image:
+    repository: quay.io/metallb/controller
+    tag: v0.13.12
+    pullPolicy: IfNotPresent
+
+speaker:
+  logLevel: debug
+  image:
+    tag: v0.13.12
+    pullPolicy: IfNotPresent

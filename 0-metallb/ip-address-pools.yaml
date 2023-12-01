@@ -1,0 +1,27 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: internal
+  namespace: metallb
+spec:
+  addresses:
+  - 192.168.1.4/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: external
+  namespace: metallb
+spec:
+  addresses:
+  - 192.168.1.5/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: dns
+  namespace: metallb
+spec:
+  addresses:
+  - 192.168.1.8/32
