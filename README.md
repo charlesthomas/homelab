@@ -17,7 +17,10 @@ they increment by tens for future-proofing
   - [longhorn](/docs/longhorn.md)
   - [nfs](/docs/nfs.md)
 - observability
+  - [grafana](/docs/grafana.md)
   - [influxdb2](/docs/influxdb2.md)
+  - [loki](/docs/loki.md)
+  - [promtail](/docs/promtail.md)
   - [telegraf](/docs/telegraf.md)
 - disaster recovery
   - [Was the raft log corrupted, truncated, or lost?](/docs/raft.md)
