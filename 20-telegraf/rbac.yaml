@@ -1,0 +1,52 @@
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: influx-stats-viewer
+  labels:
+    rbac.authorization.k8s.io/aggregate-view-telegraf-stats: "true"
+rules:
+  - apiGroups: ["metrics.k8s.io"]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["nodes", "nodes/proxy", "nodes/stats", "persistentvolumes"]
+    verbs: ["get", "list", "watch"]
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: influx:cluster:viewer
+  labels:
+    rbac.authorization.k8s.io/aggregate-view-telegraf: "true"
+rules:
+  - apiGroups: [""]
+    resources: ["persistentvolumes", "nodes", "secrets"]
+    verbs: ["get", "list"]
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: influx:telegraf
+aggregationRule:
+  clusterRoleSelectors:
+    - matchLabels:
+        rbac.authorization.k8s.io/aggregate-view-telegraf: "true"
+    - matchLabels:
+        rbac.authorization.k8s.io/aggregate-view-telegraf-stats: "true"
+    - matchLabels:
+        rbac.authorization.k8s.io/aggregate-to-view: "true"
+rules: [] # Rules are automatically filled in by the controller manager.
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: influx:telegraf:viewer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: influx:telegraf
+subjects:
+  - kind: ServiceAccount
+    name: telegraf
+    namespace: telegraf

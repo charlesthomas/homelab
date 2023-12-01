@@ -95,7 +95,7 @@ env: {}
 ##
 adminUser:
   organization: "influxdata"
-  bucket: "default"
+  bucket: "telegraf"
   user: "admin"
   retention_policy: "0s"
   ## Leave empty to generate a random password and token.
@@ -158,7 +158,7 @@ initScripts:
 ##
 service:
   type: ClusterIP
-  port: 80
+  port: 8086
   targetPort: 8086
   annotations: {}
   labels: {}
