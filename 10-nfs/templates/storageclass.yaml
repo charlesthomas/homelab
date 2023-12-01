@@ -8,6 +8,6 @@ metadata:
 provisioner: nfs
 parameters:
   server: {{ $.Values.server }}
-  path: /{{ . }}
+  path: /volume1/{{ . }}
   readOnly: "false"
 {{- end }}

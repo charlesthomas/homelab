@@ -8,6 +8,13 @@ although you may need to build the dependency first
 
 ## installation
 
+### install nfs-common on the nodes
+
+```bash
+sudo apt-get install nfs-common -y
+```
+### install the chart
+
 ```bash
 helm dependency build 10-nfs --skip-refresh && \
 helm upgrade --install --create-namespace --namespace nfs nfs 10-nfs/ --values 10-nfs/values.yaml
