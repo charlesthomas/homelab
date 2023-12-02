@@ -25,3 +25,30 @@ metadata:
 spec:
   addresses:
   - 192.168.1.8/32
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: internal
+  namespace: metallb
+spec:
+  ipAddressPools:
+  - internal
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: external
+  namespace: metallb
+spec:
+  ipAddressPools:
+  - external
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: dns
+  namespace: metallb
+spec:
+  ipAddressPools:
+  - dns 
