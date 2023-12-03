@@ -2,8 +2,8 @@
 
 cluster storage is provided via two mechanisms:
 
-1. distributed block storage via [longhorn](/docs/longhorn.md)
-1. [nfs](/docs/nfs.md)
+1. distributed block storage via [longhorn](/10-longhorn/longhorn.md)
+1. [nfs](/10-nfs/nfs.md)
 
 ## storageClasses
 

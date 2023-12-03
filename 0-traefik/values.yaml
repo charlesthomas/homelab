@@ -25,23 +25,7 @@ ingressClass:
 ## Create an IngressRoute for the dashboard
 ingressRoute:
   dashboard:
-    # -- Create an IngressRoute for the dashboard
-    enabled: true
-    # -- Additional ingressRoute annotations (e.g. for kubernetes.io/ingress.class)
-    annotations:
-      kubernetes.io/ingress.class: traefik-internal
-    # -- Additional ingressRoute labels (e.g. for filtering IngressRoute by custom labels)
-    labels: {}
-    # -- The router match rule used for the dashboard ingressRoute
-    matchRule: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
-    # -- Specify the allowed entrypoints to use for the dashboard ingress route, (e.g. traefik, web, websecure).
-    # By default, it's using traefik entrypoint, which is not exposed.
-    # /!\ Do not expose your dashboard without any protection over the internet /!\
-    entryPoints: ["traefik"]
-    # -- Additional ingressRoute middlewares (e.g. for authentication)
-    middlewares: []
-    # -- TLS options (e.g. secret containing certificate)
-    tls: {}
+    enabled: false
 
 providers:
   kubernetesCRD:
@@ -171,6 +155,12 @@ tlsOptions: {}
 #       secretName: tls-cert
 tlsStore: {}
 
+logs:
+  general:
+    level: INFO
+  access:
+    level: DEBUG
+
 service:
   enabled: true
   ## -- Single service is using `MixedProtocolLBService` feature gate.
@@ -179,7 +169,10 @@ service:
   type: LoadBalancer
   # -- Additional annotations applied to both TCP and UDP services (e.g. for cloud provider specific config)
   annotations:
+    # assign the service an IP from the pool
     metallb.universe.tf/address-pool: internal
+    # update DNS for traefik.local to point to the assigned IP
+    external-dns.alpha.kubernetes.io/hostname: traefik.local
 
 persistence:
   # -- Enable persistence using Persistent Volume Claims

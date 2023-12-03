@@ -29,4 +29,3 @@ to do it anyway:
 ```bash
 kubectl -n longhorn edit settings.longhorn.io deleting-confirmation-flag
 ```
-

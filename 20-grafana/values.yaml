@@ -242,6 +242,8 @@ ingress:
   # Values can be templated
   annotations:
     kubernetes.io/ingress.class: traefik-internal
+    external-dns.alpha.kubernetes.io/hostname: grafana.local
+    external-dns.alpha.kubernetes.io/target: traefik.local
     # kubernetes.io/tls-acme: "true"
   labels: {}
   path: /

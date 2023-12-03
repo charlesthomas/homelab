@@ -7,11 +7,11 @@ defaultSettings:
   defaultLonghornStaticStorageClass: longhorn
 
 ingress:
-  ## Set to true to enable ingress record generation
-  enabled: false
-
-  ## Add ingressClassName to the Ingress
-  ## Can replace the kubernetes.io/ingress.class annotation on v1.18+
-  ingressClassName: ~
+  enabled: true
+  ingressClassName: traefik-internal
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: longhorn.local
+    external-dns.alpha.kubernetes.io/target: traefik.local
+  host: longhorn.local
 
 namespaceOverride: longhorn
