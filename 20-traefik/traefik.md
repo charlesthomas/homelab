@@ -9,7 +9,7 @@ helm repo add traefik https://traefik.github.io/charts
 ## install chart
 
 ```bash
-helm upgrade --install --create-namespace --namespace traefik traefik traefik/traefik --values 0-traefik/values.yaml
+helm upgrade --install --create-namespace --namespace traefik traefik traefik/traefik --values 20-traefik/values.yaml
 ```
 
 ## manually create ingress for dashboard

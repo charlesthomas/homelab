@@ -18,23 +18,27 @@ they increment by tens for future-proofing
 
 ## services
 
-### 0 networking, routing, reverse proxy-ing
+### 0 networking & routing
 
-- [external-dns](0-external-dns/external-dns.md)
+- [external-dns](/0-external-dns/external-dns.md)
 - [kube-vip](/0-kube-vip/kube-vip.md)
 - [metallb](/0-metallb/metallb.md)
 - [pihole](/0-pihole/pihole.md)
-- [traefik](/0-traefik/traefik.md)
 
 ### 10 storage
 
 - [longhorn](/10-longhorn/longhorn.md)
 - [nfs](/10-nfs/nfs.md)
 
-### 20 observability
+### 20 ssl & reverse proxyin-ing
 
-- [grafana](/20-grafana/grafana.md)
-- [influxdb2](/20-influxdb2/influxdb2.md)
-- [loki](/20-loki/loki.md)
-- [promtail](/20-promtail/promtail.md)
-- [telegraf](/20-telegraf/telegraf.md)
+- [cert-manager](/20-cert-manager/cert-manager.md)
+- [traefik](/20-traefik/traefik.md)
+
+### 30 observability
+
+- [grafana](/30-grafana/grafana.md)
+- [influxdb2](/30-influxdb2/influxdb2.md)
+- [loki](/30-loki/loki.md)
+- [promtail](/30-promtail/promtail.md)
+- [telegraf](/30-telegraf/telegraf.md)

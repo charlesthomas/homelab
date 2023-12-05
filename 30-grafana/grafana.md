@@ -27,5 +27,5 @@ kc get -o yaml -n influxdb2 secret influxdb-auth | sed s/'namespace: influxdb2'/
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts && \
 helm repo update
-helm upgrade --install grafana grafana/grafana --create-namespace --namespace grafana --values 20-grafana/values.yaml
+helm upgrade --install grafana grafana/grafana --create-namespace --namespace grafana --values 30-grafana/values.yaml
 ```

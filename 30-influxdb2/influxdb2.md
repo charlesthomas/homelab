@@ -34,7 +34,7 @@ xclip -selection clipboard -o | base64 | xclip -selection clipboard
 
 ```bash
 helm repo add influxdata https://helm.influxdata.com/ && \
-helm upgrade --install --create-namespace --namespace influxdb2 influxdb2 influxdata/influxdb2 --values 20-influxdb2/values.yaml
+helm upgrade --install --create-namespace --namespace influxdb2 influxdb2 influxdata/influxdb2 --values 30-influxdb2/values.yaml
 ```
 
 ## uninstallation

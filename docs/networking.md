@@ -31,4 +31,4 @@ and a backup raspberry pi 2 running external to the cluster physically connected
 
 [external-dns](/0-external-dns/external-dns.md) is running in the cluster and auto-updates the pihole
 based on what happens with services in the cluster.
-most records will be `CNAME`s pointing at [traefik](/0-traefik/traefik.md)
+most records will be `CNAME`s pointing at [traefik](/20-traefik/traefik.md)
