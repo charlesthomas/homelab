@@ -1,5 +1,13 @@
 # traefik
 
+## create certificate
+
+(depends on [cert-manager](/20-cert-manager/cert-manager.md))
+
+```bash
+kubectl apply -f 20-traefik/certificate.yaml
+```
+
 ## add chart
 
 ```bash
@@ -15,7 +23,13 @@ helm upgrade --install --create-namespace --namespace traefik traefik traefik/tr
 ## manually create ingress for dashboard
 
 ```bash
-kubectl apply -f o-traefik/dashboard-ingress.yaml
+kubectl apply -f 20-traefik/dashboard-ingress.yaml
+```
+
+## create tlsstore
+
+```bash
+kubectl apply -f 20-traefik/tls-store.yaml
 ```
 
 ## IngressClasses

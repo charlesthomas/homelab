@@ -242,8 +242,8 @@ ingress:
   # Values can be templated
   annotations:
     kubernetes.io/ingress.class: traefik-internal
-    external-dns.alpha.kubernetes.io/hostname: grafana.local
-    external-dns.alpha.kubernetes.io/target: traefik.local
+    external-dns.alpha.kubernetes.io/hostname: grafana.crt.house
+    external-dns.alpha.kubernetes.io/target: traefik.crt.house
     # kubernetes.io/tls-acme: "true"
   labels: {}
   path: /
@@ -252,7 +252,7 @@ ingress:
   pathType: Prefix
 
   hosts:
-    - grafana.local
+    - grafana.crt.house
   ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   extraPaths: []
   # - path: /*

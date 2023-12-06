@@ -1,0 +1,145 @@
+global:
+  # Set the verbosity of cert-manager. Range of 0 - 6 with 6 being the most verbose.
+  logLevel: 6
+
+installCRDs: true
+
+image:
+  repository: quay.io/jetstack/cert-manager-controller
+  pullPolicy: IfNotPresent
+  # tag: canary
+
+namespace: "cert-manager"
+
+serviceAccount:
+  name: "cert-manager"
+
+# When this flag is enabled, secrets will be automatically removed when the certificate resource is deleted
+enableCertificateOwnerRef: false
+
+# Used to configure options for the controller pod.
+# This allows setting options that'd usually be provided via flags.
+# An APIVersion and Kind must be specified in your values.yaml file.
+# Flags will override options that are set here.
+config:
+#   apiVersion: controller.config.cert-manager.io/v1alpha1
+#   kind: ControllerConfiguration
+#   logging:
+#    verbosity: 2
+#    format: text
+#   leaderElectionConfig:
+#    namespace: kube-system
+#   kubernetesAPIQPS: 9000
+#   kubernetesAPIBurst: 9000
+#   numberOfConcurrentWorkers: 200
+#   featureGates:
+#     additionalCertificateOutputFormats: true
+#     experimentalCertificateSigningRequestControllers: true
+#     experimentalGatewayAPISupport: true
+#     serverSideApply: true
+#     literalCertificateSubject: true
+#     useCertificateRequestBasicConstraints: true
+
+# Additional command line flags to pass to cert-manager controller binary.
+# To see all available flags run docker run quay.io/jetstack/cert-manager-controller:<version> --help
+extraArgs: []
+  # Use this flag to enable or disable arbitrary controllers, for example, disable the CertificiateRequests approver
+  # - --controllers=*,-certificaterequests-approver
+
+extraEnv: []
+# - name: SOME_VAR
+#   value: 'some value'
+
+volumes: []
+
+volumeMounts: []
+
+# Optional DNS settings, useful if you have a public and private DNS zone for
+# the same domain on Route 53. What follows is an example of ensuring
+# cert-manager can access an ingress or DNS TXT records at all times.
+# NOTE: This requires Kubernetes 1.10 or `CustomPodDNS` feature gate enabled for
+# the cluster to work.
+# podDnsPolicy: "None"
+# podDnsConfig:
+#   nameservers:
+#     - "1.1.1.1"
+#     - "8.8.8.8"
+
+prometheus:
+  enabled: false
+  servicemonitor:
+    enabled: false
+    prometheusInstance: default
+    targetPort: 9402
+    path: /metrics
+    interval: 60s
+    scrapeTimeout: 30s
+    labels: {}
+    annotations: {}
+    honorLabels: false
+    endpointAdditionalProperties: {}
+
+webhook:
+  # Used to configure options for the webhook pod.
+  # This allows setting options that'd usually be provided via flags.
+  # An APIVersion and Kind must be specified in your values.yaml file.
+  # Flags will override options that are set here.
+  config:
+    # apiVersion: webhook.config.cert-manager.io/v1alpha1
+    # kind: WebhookConfiguration
+
+  extraArgs: []
+  # Path to a file containing a WebhookConfiguration object used to configure the webhook
+  # - --config=<path-to-config-file>
+
+  # Comma separated list of feature gates that should be enabled on the
+  # webhook pod.
+  featureGates: ""
+
+  image:
+    repository: quay.io/jetstack/cert-manager-webhook
+    pullPolicy: IfNotPresent
+    # tag: canary
+
+  # Specifies how the service should be handled. Useful if you want to expose the
+  # webhook to outside of the cluster. In some cases, the control plane cannot
+  # reach internal services.
+  serviceType: ClusterIP
+  # loadBalancerIP:
+
+  volumes: []
+  volumeMounts: []
+
+cainjector:
+  enabled: true
+  replicaCount: 1
+
+  # Additional command line flags to pass to cert-manager cainjector binary.
+  # To see all available flags run docker run quay.io/jetstack/cert-manager-cainjector:<version> --help
+  extraArgs: []
+  # Enable profiling for cainjector
+  # - --enable-profiling=true
+
+  image:
+    repository: quay.io/jetstack/cert-manager-cainjector
+    pullPolicy: IfNotPresent
+    # tag: canary
+
+  volumes: []
+  volumeMounts: []
+
+
+acmesolver:
+  image:
+    repository: quay.io/jetstack/cert-manager-acmesolver
+    pullPolicy: IfNotPresent
+    # tag: canary
+
+startupapicheck:
+  image:
+    repository: quay.io/jetstack/cert-manager-ctl
+    pullPolicy: IfNotPresent
+    # tag: canary
+
+  volumes: []
+  volumeMounts: []

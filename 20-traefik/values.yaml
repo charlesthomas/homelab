@@ -105,15 +105,9 @@ ports:
     protocol: TCP
     tls:
       enabled: true
-      # this is the name of a TLSOption definition
-      options: ""
-      certResolver: ""
-      domains: []
-      # - main: example.com
-      #   sans:
-      #     - foo.example.com
-      #     - bar.example.com
-    #
+      domains:
+      - main: crt.house
+
     # -- One can apply Middlewares on an entrypoint
     # https://doc.traefik.io/traefik/middlewares/overview/
     # https://doc.traefik.io/traefik/routing/entrypoints/#middlewares
@@ -147,11 +141,10 @@ tlsOptions: {}
 #   default:
 #     defaultCertificate:
 #       secretName: tls-cert
-tlsStore: {}
 
 logs:
   general:
-    level: INFO
+    level: DEBUG
   access:
     level: DEBUG
 
@@ -166,7 +159,7 @@ service:
     # assign the service an IP from the pool
     metallb.universe.tf/address-pool: internal
     # update DNS for traefik.local to point to the assigned IP
-    external-dns.alpha.kubernetes.io/hostname: traefik.local
+    external-dns.alpha.kubernetes.io/hostname: traefik.crt.house
 
 persistence:
   # -- Enable persistence using Persistent Volume Claims

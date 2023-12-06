@@ -2,13 +2,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: traefik.local
+    external-dns.alpha.kubernetes.io/hostname: traefik.crt.house
   name: traefik-dash
   namespace: traefik
 spec:
   ingressClassName: traefik-internal
   rules:
-  - host: traefik.local
+  - host: traefik.crt.house
     http:
       paths:
       - backend:
