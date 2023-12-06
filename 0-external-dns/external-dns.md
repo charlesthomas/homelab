@@ -33,7 +33,7 @@ helm repo add external-dns https://kubernetes-sigs.github.io/external-dns/
 
 ## default values
 ```bash
-helm show values external-dns/external-dns > 0-external-dns/values.og.yaml
+helm show values external-dns/external-dns > 0-external-dns/stock-values.yaml
 ```
 
 ## installation
@@ -44,12 +44,20 @@ helm show values external-dns/external-dns > 0-external-dns/values.og.yaml
 kubectl create namespace external-dns
 ```
 
-### get the pihole-admin secret
+### add cloudflare api token
 
 ```bash
-kubectl get -n pihole secret pihole-admin -o yaml | sed 's/namespace: pihole/namespace: external-dns/' | kubectl apply -f -
+kubectl -n external-dns create secret generic cloudflare
+kubectl -n external-dns edit secret cloudflare
+```
+
+```yaml
+data:
+    cf-api-token: <base64 cf api token>
 ```
 
 ```bash
-helm upgrade --install external-dns external-dns/external-dns --create-namespace --namespace external-dns --values 0-external-dns/values.yaml
+helm upgrade --install external-dns external-dns/external-dns \
+--create-namespace --namespace external-dns \
+--values 0-external-dns/values.yaml
 ```

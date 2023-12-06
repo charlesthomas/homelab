@@ -6,15 +6,15 @@ serviceAccount:
   name: "external-dns"
 
 logLevel: debug
-interval: 15s
+interval: 1m
 
-provider: pihole
+provider: cloudflare
 env:
-  - name: EXTERNAL_DNS_PIHOLE_PASSWORD
+  - name: CF_API_TOKEN
     valueFrom:
       secretKeyRef:
-        name: pihole-admin
-        key: password
+        name: cloudflare
+        key: cf-api-token
 
 extraArgs:
-- --pihole-server=http://pihole-web.pihole.svc
+- --cloudflare-dns-records-per-page=5000
