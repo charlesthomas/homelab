@@ -27,20 +27,17 @@ ingress:
   enabled: true
 
   # -- Specify an ingressClassName
-  ingressClassName: traefik-internal
+  ingressClassName: nginx-crt-house
 
   annotations:
     external-dns.alpha.kubernetes.io/hostname: pihole.crt.house
-    external-dns.alpha.kubernetes.io/target: traefik.crt.house
 
   path: /
   hosts:
     - pihole.crt.house
   tls:
-  - secretName: certificate
-    hosts:
-    - crt.house
-
+  - hosts:
+    - pihole.crt.house
 
 persistentVolumeClaim:
   enabled: true

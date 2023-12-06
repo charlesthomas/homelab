@@ -8,7 +8,10 @@
 ```bash
 helm repo add longhorn https://charts.longhorn.io
 helm repo update
-helm upgrade --install --create-namespace --namespace longhorn longhorn longhorn/longhorn --version 1.5.3 --values 10-longhorn/values.yaml
+helm upgrade --install longhorn longhorn/longhorn \
+--create-namespace --namespace longhorn \
+--version 1.5.3 \
+--values 10-longhorn/values.yaml
 ```
 
 ### disable usage metrics

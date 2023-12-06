@@ -178,13 +178,12 @@ ingress:
   # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   # className: nginx
-  tls: false
+  tls: true
   # secretName: my-tls-cert # only needed if tls above is true or default certificate is not configured for Nginx
   hostname: influxdb.crt.house
   annotations: 
-    kubernetes.io/ingress.class: traefik-internal
+    kubernetes.io/ingress.class: nginx-crt-house
     external-dns.alpha.kubernetes.io/hostname: influxdb.crt.house
-    external-dns.alpha.kubernetes.io/target: traefik.crt.house
   path: /
 
 ## Pod disruption budget configuration

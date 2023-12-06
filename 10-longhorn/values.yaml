@@ -8,10 +8,8 @@ defaultSettings:
 
 ingress:
   enabled: true
-  ingressClassName: traefik-internal
+  ingressClassName: nginx-crt-house
   annotations:
     external-dns.alpha.kubernetes.io/hostname: longhorn.crt.house
-    external-dns.alpha.kubernetes.io/target: traefik.crt.house
-  host: longhorn.local
-
-namespaceOverride: longhorn
+  host: longhorn.crt.house
+  tls: true
