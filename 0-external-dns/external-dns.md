@@ -20,10 +20,8 @@ in order to create a CNAME alias for an `Ingress`:
 ```yaml
 annotations:
     external-dns.alpha.kubernetes.io/hostname: ingress-service.local
-    external-dns.alpha.kubernetes.io/target: loadbalancer-service.local
+    external-dns.alpha.kubernetes.io/target: tld (eg crt.house)
 ```
-
-where `loadbalancer-service.local` is the same as the A record above, ie `traefik.local`, and `ingress-service.local` is a service using that `LoadBalancer`'s `Ingress`, ie `grafana.local`
 
 ## get the chart
 

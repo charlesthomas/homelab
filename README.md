@@ -33,7 +33,9 @@ they increment by tens for future-proofing
 ### 20 ssl & reverse proxyin-ing
 
 - [cert-manager](/20-cert-manager/cert-manager.md)
-- [traefik](/20-traefik/traefik.md)
+- nginx
+  - [crt.house internal](/20-nginx-crt.house/nginx.md)
+  - [crt.house external](/20-nginx-crt-house-external/nginx.md)
 
 ### 30 observability
 
