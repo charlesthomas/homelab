@@ -18,7 +18,7 @@ data:
       log_level: debug
       log_output:
       - console
-      network_key: GENERATE
+      network_key: '!secrets network_key'
     experimental:
       new_api: true
     frontend:
@@ -91,7 +91,7 @@ spec:
       - command:
         - /bin/sh
         - -c
-        - cp -v /configs/configuration.yaml /data/
+        - cp -v /configs/configuration.yaml /data/; echo $SECRETS_YAML >/data/secrets.yaml;
         image: alpine:latest
         imagePullPolicy: IfNotPresent
         name: copy
@@ -100,6 +100,12 @@ spec:
           name: data
         - mountPath: /configs/
           name: zigbee2mqtt-settings
+        env:
+        - name: SECRETS_YAML
+          valueFrom:
+            secretKeyRef:
+              key: secrets
+              name: zigbee2mqtt
 
       containers:
         - name: zigbee2mqtt
