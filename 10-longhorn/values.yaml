@@ -2,7 +2,7 @@ persistence:
   defaultClassReplicaCount: 2
 
 defaultSettings:
-  backupTarget: ~
+  backupTarget: nfs://192.168.1.21:/volume1/k3s/longhorn
   backupTargetCredentialSecret: ~
   defaultLonghornStaticStorageClass: longhorn
 

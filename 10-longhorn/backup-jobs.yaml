@@ -1,0 +1,48 @@
+apiVersion: v1
+items:
+- apiVersion: longhorn.io/v1beta2
+  kind: RecurringJob
+  metadata:
+    creationTimestamp: "2023-12-08T23:34:37Z"
+    generation: 1
+    name: c-bizpir
+    namespace: longhorn
+    resourceVersion: "6959728"
+    uid: 7d33ec42-3c07-4592-9b2e-36c71cda2f7e
+  spec:
+    concurrency: 1
+    cron: 0 0 ? * SUN
+    groups:
+    - zigbee2mqtt
+    labels:
+      app: zigbee2mqtt
+    name: c-bizpir
+    retain: 4
+    task: backup
+  status:
+    ownerID: k3s2
+- apiVersion: longhorn.io/v1beta2
+  kind: RecurringJob
+  metadata:
+    creationTimestamp: "2023-12-08T23:36:16Z"
+    generation: 1
+    name: c-os9ixk
+    namespace: longhorn
+    resourceVersion: "6960569"
+    uid: 41a768e1-e236-474c-9edf-543793c13a09
+  spec:
+    concurrency: 1
+    cron: 0 1 ? * SUN
+    groups:
+    - home-assistant
+    labels:
+      app: home-assistant
+    name: c-os9ixk
+    retain: 4
+    task: backup
+  status:
+    ownerID: k3s2
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

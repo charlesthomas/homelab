@@ -13,9 +13,6 @@ cluster storage is provided via two mechanisms:
   - replica size 2 inside the cluster
   - NO additional redundancy
     - including offsite backup
-- `longhorn-critical`
-  - does not exist yet
-  - may be created for backups to `nfs://nas01/critical`
 - `nfs-critical`
   - maps to `nfs://nas01/critical`
   - offsite backup to `nas02`
