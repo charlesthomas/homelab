@@ -1,0 +1,186 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: zigbee2mqtt
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zigbee2mqtt-settings
+  namespace: zigbee2mqtt
+data:
+  configuration.yaml: |
+    advanced:
+      homeassistant_discovery_topic: homeassistant
+      homeassistant_status_topic: homeassistant/status
+      last_seen: ISO_8601
+      log_level: debug
+      log_output:
+      - console
+      network_key: GENERATE
+    experimental:
+      new_api: true
+    frontend:
+      port: 8080
+    homeassistant: true
+    mqtt:
+      base_topic: zigbee2mqtt
+      include_device_information: true
+      server: mqtt://mosquitto.mosquitto.svc
+    permit_join: true
+    serial:
+      adapter: deconz
+      port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE3019008-if00
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: zigbee2mqtt-data
+  namespace: zigbee2mqtt
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "500Mi"
+  storageClassName: "longhorn"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zigbee2mqtt
+  namespace: zigbee2mqtt
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: http
+    protocol: TCP
+    name: http
+  selector:
+    app.kubernetes.io/name: zigbee2mqtt
+    app.kubernetes.io/instance: zigbee2mqtt
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zigbee2mqtt
+  namespace: zigbee2mqtt
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zigbee2mqtt
+      app.kubernetes.io/instance: zigbee2mqtt
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: zigbee2mqtt
+        app.kubernetes.io/instance: zigbee2mqtt
+    spec:
+      
+      serviceAccountName: default
+      automountServiceAccountToken: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+
+      initContainers:
+      - command:
+        - /bin/sh
+        - -c
+        - cp -v /configs/configuration.yaml /data/
+        image: alpine:latest
+        imagePullPolicy: IfNotPresent
+        name: copy
+        volumeMounts:
+        - mountPath: /data
+          name: data
+        - mountPath: /configs/
+          name: zigbee2mqtt-settings
+
+      containers:
+        - name: zigbee2mqtt
+          image: "koenkk/zigbee2mqtt:1.34.0"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+          env:
+            - name: ZIGBEE2MQTT_DATA
+              value: /data
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: usb
+              mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE3019008-if00
+            - name: zigbee2mqtt-settings
+              mountPath: /app/configuration.yaml
+              subPath: configuration.yaml
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 0
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 0
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          startupProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 0
+            failureThreshold: 30
+            timeoutSeconds: 1
+            periodSeconds: 5
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: zigbee2mqtt-data
+        - name: usb
+          hostPath:
+            path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE3019008-if00
+        - name: zigbee2mqtt-settings
+          configMap:
+            name: zigbee2mqtt-settings
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: feature.node.kubernetes.io/usb-02_1cf1_0030.present
+                operator: Exists
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: zigbee2mqtt
+  namespace: zigbee2mqtt
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: zigbee2mqtt.crt.house
+spec:
+  ingressClassName: nginx-crt-house
+  tls:
+    - hosts:
+      - zigbee2mqtt.crt.house
+  rules:
+    - host: "zigbee2mqtt.crt.house"
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: zigbee2mqtt
+                port:
+                  number: 8080
