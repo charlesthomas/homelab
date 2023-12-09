@@ -21,11 +21,79 @@ data:
 
     homeassistant:
       name: 337
-      latitude: 42.97
-      longitude: -85.68
+      latitude: !env_var LATITUDE
+      longitude: !env_var LONGITUDE
       elevation: 709
       unit_system: imperial
       time_zone: America/Detroit
+
+    automation: !include automations.yaml
+
+  automations.yaml: |
+    - alias: ct br lamp off button
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: 56f9d0be4d86c1025c9e9b971fdcbcf3
+          type: action
+          subtype: off_press
+          discovery_id: 0x001788010b7457e4 action_off_press
+      condition:
+        - condition: device
+          type: is_on
+          device_id: 86947dc3993b59bc2a428d4fd8b90fde
+          entity_id: a7b7086e644289db071ea71a9a9fc2a2
+          domain: light
+      action:
+        - type: turn_off
+          device_id: 86947dc3993b59bc2a428d4fd8b90fde
+          entity_id: a7b7086e644289db071ea71a9a9fc2a2
+          domain: light
+      mode: single
+
+    - alias: ct br lamp on button
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: 56f9d0be4d86c1025c9e9b971fdcbcf3
+          type: action
+          subtype: on_press
+          discovery_id: 0x001788010b7457e4 action_on_press
+      condition:
+        - condition: device
+          type: is_off
+          device_id: 86947dc3993b59bc2a428d4fd8b90fde
+          entity_id: a7b7086e644289db071ea71a9a9fc2a2
+          domain: light
+      action:
+        - type: turn_on
+          device_id: 86947dc3993b59bc2a428d4fd8b90fde
+          entity_id: a7b7086e644289db071ea71a9a9fc2a2
+          domain: light
+      mode: single
+
+    - alias: ct br motion lamp on
+      description: ""
+      trigger:
+        - type: motion
+          platform: device
+          device_id: a6e4f3acb2097d1c744e38f6106b20b3
+          entity_id: 5a1b3872436c4a2fa1624645f72353de
+          domain: binary_sensor
+      condition:
+        - condition: device
+          type: is_off
+          device_id: 86947dc3993b59bc2a428d4fd8b90fde
+          entity_id: a7b7086e644289db071ea71a9a9fc2a2
+          domain: light
+      action:
+        - type: turn_on
+          device_id: 86947dc3993b59bc2a428d4fd8b90fde
+          entity_id: a7b7086e644289db071ea71a9a9fc2a2
+          domain: light
+      mode: single
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -88,6 +156,16 @@ spec:
           env:
             - name: TZ
               value: America/Detroit
+            - name: LATITUDE
+              valueFrom:
+                secretKeyRef:
+                  name: home-assistant
+                  key: latitude
+            - name: LONGITUDE
+              valueFrom:
+                secretKeyRef:
+                  name: home-assistant
+                  key: longitude
           ports:
             - name: http
               containerPort: 8123
