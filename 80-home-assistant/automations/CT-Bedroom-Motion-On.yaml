@@ -1,0 +1,16 @@
+alias: CT Bedroom Motion On
+description: ""
+trigger:
+  - type: motion
+    platform: device
+    device_id: a6e4f3acb2097d1c744e38f6106b20b3
+    entity_id: 5a1b3872436c4a2fa1624645f72353de
+    domain: binary_sensor
+condition: []
+action:
+  - type: turn_on
+    device_id: 86947dc3993b59bc2a428d4fd8b90fde
+    entity_id: a7b7086e644289db071ea71a9a9fc2a2
+    domain: light
+    brightness_pct: 100
+mode: single

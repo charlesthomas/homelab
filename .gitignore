@@ -1,3 +1,4 @@
 *.tar.gz
 *.tgz
 stock-values.yaml
+80-home-assistant/configmap.yaml

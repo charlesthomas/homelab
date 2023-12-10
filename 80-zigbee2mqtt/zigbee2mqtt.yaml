@@ -28,7 +28,7 @@ data:
       base_topic: zigbee2mqtt
       include_device_information: true
       server: mqtt://mosquitto.mosquitto.svc
-    permit_join: true
+    permit_join: false
     serial:
       adapter: deconz
       port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE3019008-if00
