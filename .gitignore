@@ -1,5 +1,5 @@
 *.tar.gz
 *.tgz
 stock-values.yaml
-30-grafana/etc-dashboards.yaml
-80-home-assistant/automations-yaml.yaml
+grafana/etc-dashboards.yaml
+home-assistant/automations-yaml.yaml

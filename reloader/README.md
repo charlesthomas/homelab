@@ -13,8 +13,8 @@ metadata:
 
 current uses:
 
-- [grafana dashboards](/30-grafana/README.md)
-- [home-assistant automations](/80-home-assistant/README.md)
+- [grafana dashboards](/grafana/)
+- [home-assistant automations](/home-assistant/)
 
 ## get the chart
 
