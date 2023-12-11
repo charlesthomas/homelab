@@ -43,6 +43,12 @@ this requires generating a new CM every time you add a new dashboard:
 kubectl apply -f 30-grafana/etc-dashboards.yaml
 ```
 
+## stock values
+
+```bash
+helm show values grafana/grafana > 30-grafana/stock-values.yaml
+```
+
 ## installation
 
 ```bash
