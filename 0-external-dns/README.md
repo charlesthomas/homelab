@@ -1,6 +1,6 @@
 # external-dns
 
-monitors new `LoadBalancer` services and updates [pihole](0-pihole/pihole.md) DNS server with new domain maps to IPs
+monitors new `LoadBalancer` services and updates [pihole](0-pihole/pihole.md) and cloudflare DNS servers with new domain maps to IPs
 
 [🔗 github](https://github.com/kubernetes-sigs/external-dns#status-of-providers)
 
@@ -54,8 +54,17 @@ data:
     cf-api-token: <base64 cf api token>
 ```
 
+### add pihole secret
+
 ```bash
-helm upgrade --install external-dns external-dns/external-dns \
+kubectl -n pihole get secret pihole-admin -o yaml | sed 's/namespace: pihole/namespace: external-dns/' | kubectl apply -f -
+```
+
+```bash
+helm upgrade --install external-dns-pihole external-dns/external-dns \
 --create-namespace --namespace external-dns \
---values 0-external-dns/values.yaml
+--values 0-external-dns/pihole.yaml && \
+helm upgrade --install external-dns-cloudflare external-dns/external-dns \
+--create-namespace --namespace external-dns \
+--values 0-external-dns/cloudflare.yaml
 ```

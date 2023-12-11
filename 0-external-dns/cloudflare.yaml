@@ -1,9 +1,7 @@
+nameOverride: cloudflare
 image:
   tag: "v0.14.0"
   pullPolicy: IfNotPresent
-
-serviceAccount:
-  name: "external-dns"
 
 logLevel: debug
 interval: 1m
