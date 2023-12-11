@@ -19,5 +19,4 @@ action:
     device_id: 86947dc3993b59bc2a428d4fd8b90fde
     entity_id: a7b7086e644289db071ea71a9a9fc2a2
     domain: light
-    brightness_pct: 100
 mode: single

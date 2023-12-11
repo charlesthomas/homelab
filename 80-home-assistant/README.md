@@ -20,8 +20,8 @@ then it will load that list as a string value into the appropriate key in the co
 which you can then load like so:
 
 ```bash
-80-home-assistant/generate-configmap.sh && \
-kubectl apply -f 80-home-assistant/configmap.yaml
+80-home-assistant/generate-automations.sh && \
+kubectl apply -f 80-home-assistant/automations-yaml.yaml
 ```
 
 ## installation
@@ -30,5 +30,6 @@ there are a bunch of helm charts for home-assistant, but they're all deprecated.
 so just do this:
 
 ```bash
+kubectl apply -f 80-home-assistant/configuration-yaml.yaml && \
 kubectl apply -f 80-home-assistant/home-assistant.yaml
 ```

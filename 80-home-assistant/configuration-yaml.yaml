@@ -1,0 +1,60 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configuration-yaml
+  namespace: home-assistant
+data:
+  configuration.yaml: |
+    default_config:
+
+    automation: !include automations.yaml
+
+    homeassistant:
+      name: 337
+      latitude: !env_var LATITUDE
+      longitude: !env_var LONGITUDE
+      elevation: 709
+      unit_system: imperial
+      time_zone: America/Detroit
+
+    http:
+      use_x_forwarded_for: true
+      trusted_proxies:
+      - 192.168.1.0/24
+      - 10.42.0.0/16
+
+    adaptive_lighting:
+      - name: "default"
+        min_brightness: 100
+        max_brightness: 100
+        min_color_temp: 2000
+        max_color_temp: 5500
+        lights: [
+          "light.desk_lamp_left",
+          "light.desk_lamp_right",
+          "light.kitchen_1",
+          "light.kitchen_2",
+          "light.kitchen_3",
+          "light.kitchen_4",
+          "light.tv_lamp_left_front",
+          "light.tv_lamp_left_rear",
+          "light.tv_lamp_right_front",
+          "light.tv_lamp_right_rear"
+        ]
+      - name: "red"
+        min_brightness: 100
+        max_brightness: 100
+        min_color_temp: 2000
+        max_color_temp: 5500
+        sleep_brightness: 35
+        sleep_rgb_or_color_temp: rgb_color
+        sleep_rgb_color: [255, 0, 0]
+        lights: [
+          "light.chuck_br_lamp",
+          "light.chuck_bathroom_left",
+          "light.chuck_bathroom_center",
+          "light.chuck_bathroom_right"
+        ]
+
+

@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: automations-yaml
+  namespace: home-assistant
+data:

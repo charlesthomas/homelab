@@ -6,24 +6,17 @@ trigger:
     device_id: b1cf547c46b0b9fa17211b2685d5e5cf
     entity_id: 40e0cb4c514ef2e80bd49f6cd905981b
     domain: binary_sensor
-condition:
-  - condition: state
-    entity_id: input_boolean.red_mode
-    state: "off"
 action:
   - type: turn_on
     device_id: cf13b868bb8a1a584e068d0d53696471
     entity_id: d7ab22d757c625e844ddd57ed7844b7a
     domain: light
-    brightness_pct: 100
   - type: turn_on
     device_id: 4251f1ff975d7308138c51e433cb3c20
     entity_id: 1e22633599370136c48f4612f13cbf74
     domain: light
-    brightness_pct: 100
   - type: turn_on
     device_id: 05db9b5d8b33e6d69d61e0c3f10097d2
     entity_id: cdf1e1e3d57d631d90df24dd66f10f62
     domain: light
-    brightness_pct: 100
 mode: single

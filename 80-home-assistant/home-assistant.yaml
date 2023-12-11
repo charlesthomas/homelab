@@ -60,7 +60,7 @@ spec:
       enableServiceLinks: true
       containers:
         - name: home-assistant
-          image: "ghcr.io/home-assistant/home-assistant:2023.12.0"
+          image: "ghcr.io/home-assistant/home-assistant:2023.12.1"
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
@@ -108,22 +108,27 @@ spec:
         persistentVolumeClaim:
           claimName: home-assistant
       - configMap:
-          name: config
-        name: configmap
+          name: configuration-yaml
+        name: configuration-yaml
+      - configMap:
+          name: automations-yaml
+        name: automations-yaml
       hostNetwork: true
       initContainers:
-      - command:
+      - name: copy
+        command:
         - /bin/sh
         - -c
-        - ' cp -v /configmap/*.yaml /config/'
+        - ' cp -v /configuration-yaml/configuration.yaml /automations-yaml/automations.yaml /config/'
         image: alpine:latest
         imagePullPolicy: IfNotPresent
-        name: copy
         volumeMounts:
         - mountPath: /config
           name: config
-        - mountPath: /configmap/
-          name: configmap
+        - mountPath: /configuration-yaml/
+          name: configuration-yaml
+        - mountPath: /automations-yaml/
+          name: automations-yaml
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
