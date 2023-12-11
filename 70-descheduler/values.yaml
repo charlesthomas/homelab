@@ -1,0 +1,55 @@
+kind: Deployment
+
+image:
+  repository: registry.k8s.io/descheduler/descheduler
+  tag: ""
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  create: true
+  name: descheduler
+
+service:
+  enabled: false
+
+cmdOptions:
+  v: 4
+
+deschedulingInterval: 1m
+
+deschedulerPolicy:
+  evictLocalStoragePods: true
+  strategies:
+    RemoveDuplicates:
+      enabled: false
+    RemovePodsHavingTooManyRestarts:
+      enabled: false
+      params:
+        podsHavingTooManyRestarts:
+          podRestartThreshold: 100
+          includingInitContainers: true
+    RemovePodsViolatingNodeTaints:
+      enabled: false
+    RemovePodsViolatingNodeAffinity:
+      enabled: true
+      params:
+        nodeAffinityType:
+        - requiredDuringSchedulingIgnoredDuringExecution
+    RemovePodsViolatingInterPodAntiAffinity:
+      enabled: false
+    RemovePodsViolatingTopologySpreadConstraint:
+      enabled: false
+      params:
+        includeSoftConstraints: false
+    LowNodeUtilization:
+      enabled: false
+      params:
+        nodeResourceUtilizationThresholds:
+          thresholds:
+            cpu: 20
+            memory: 20
+            pods: 20
+          targetThresholds:
+            cpu: 50
+            memory: 50
+            pods: 50
