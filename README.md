@@ -31,10 +31,10 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 - observability
   - [grafana](/grafana/)
   - [influxdb2](/influxdb2/)
-  - [loki](/loki/loki)
+  - [loki](/loki/)
   - [promtail](/promtail/)
   - [telegraf](/telegraf/)
 - home automation
   - [home-assistant](/home-assistant/)
-  - [moquitto](/moquitto/)
+  - [mosquitto](/mosquitto/)
   - [zigbee2mqtt](/zigbee2mqtt/)
