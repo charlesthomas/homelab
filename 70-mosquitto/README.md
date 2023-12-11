@@ -21,7 +21,7 @@ helm show values truecharts/mosquitto > 60-mosquitto/stock-values.yaml
 helm upgrade --install mosquitto truecharts/mosquitto \
 --create-namespace --namespace mosquitto \
 --version 11.0.17 \
---values 60-mosquitto/values.yaml
+--values 70-mosquitto/values.yaml
 ```
 
 ## uninstall

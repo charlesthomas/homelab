@@ -340,7 +340,7 @@ persistence:
   storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
-  size: 100Gi
+  size: 10Gi
   # annotations: {}
   finalizers:
     - kubernetes.io/pvc-protection

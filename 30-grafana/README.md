@@ -46,7 +46,9 @@ kubectl apply -f 30-grafana/etc-dashboards.yaml
 ## installation
 
 ```bash
-helm upgrade --install grafana grafana/grafana --create-namespace --namespace grafana --values 30-grafana/values.yaml
+helm upgrade --install grafana grafana/grafana \
+--create-namespace --namespace grafana \
+--values 30-grafana/values.yaml
 ```
 
 ## uninstall

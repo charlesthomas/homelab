@@ -15,9 +15,7 @@ service:
 
 persistence:
   data:
-    enabled: true
-    mountPath: "/mosquitto/data"
-    storageClass: longhorn
+    enabled: false
   configinc:
     enabled: false
 
