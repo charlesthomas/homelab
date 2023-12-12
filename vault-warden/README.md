@@ -13,23 +13,6 @@ so i converted it to a deployment
 helm repo add vaultwarden https://guerzon.github.io/vaultwarden
 ```
 
-## create admin secret
-
-```bash
-kubectl create namespace vault-warden
-kubectl -n vault-warden create secret generic vault-warden
-kubectl -n vault-warden edit secret vault-warden
-```
-
-```yaml
-stringData:
-    admin-token: <NON-base64 encoded argon2 token>
-```
-
-```bash
-pbpaste | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4 | pbcopy
-```
-
 ## install
 
 ```bash
