@@ -1,24 +1,23 @@
 # nfs
 
-nsf storage classes use [kubernetes-sigs/nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
+nfs storage classes use [kubernetes-sigs/nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
 
-the `nfs` chart sets that as a dependency, so installing the chart will install the provisioner,
+there are 2 storage classes, each with its own deployment of nfs-subdir-external-provisioner:
 
-although you may need to build the dependency first
+- nfs-k3s
+  - nfs://nas01/volume1/k3s
+- nfs-critical
+  - nfs://nas01/volume1/crticial/k3s
 
-## installation
-
-### install nfs-common on the nodes
+## install nfs-common on the nodes
 
 ```bash
 sudo apt-get install nfs-common -y
 ```
-### install the chart
+
+## installation
 
 ```bash
-helm dependency build nfs --skip-refresh && \
-helm upgrade --install nfs nfs/ \
---create-namespace --namespace nfs \
---values nfs/values.yaml
+kubectl apply -k nfs/nfs-critical/
+kubectl apply -k nfs/nfs-k3s/
 ```
-

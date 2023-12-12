@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs
+  namespace: nfs
+spec:
+  template:
+    spec:
+      volumes:
+        - name: nfs-subdir-external-provisioner-root
+          nfs:
+            server: 192.168.1.21
+            path: /volume1/k3s

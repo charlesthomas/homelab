@@ -1,0 +1,18 @@
+---
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+namespace: nfs
+
+nameSuffix: -critical
+
+bases:
+  - ../base
+
+patches:
+  - deployment.yaml
+  - storage-class.yaml
+
+configMapGenerator:
+- name: nfs-config
+  env: nfs-config.properties

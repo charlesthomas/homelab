@@ -1,0 +1,7 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+provisioner: nfs-k3s
+metadata:
+  name: nfs
+  namespace: nfs
