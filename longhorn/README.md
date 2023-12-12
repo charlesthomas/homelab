@@ -18,6 +18,16 @@ helm upgrade --install longhorn longhorn/longhorn \
 --values longhorn/values.yaml
 ```
 
+## retention storage class
+
+the helm chart only creates on storageclass, and i set it up with `RetentionPolicy: Delete`
+
+```bash
+kubectl apply -f longhorn/longhorn-retain.yaml
+```
+
+will create a storageclass named `longhorn-retain` with `RetentionPolicy: Retain`
+
 ## ingress
 
 longhorn's chart requires putting the tls secret name in the ingress, which i don't want;
