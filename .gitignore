@@ -3,3 +3,4 @@
 stock-values.yaml
 grafana/etc-dashboards.yaml
 home-assistant/automations-yaml.yaml
+external-secrets/charts/
