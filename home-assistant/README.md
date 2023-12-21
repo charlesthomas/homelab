@@ -30,6 +30,7 @@ there are a bunch of helm charts for home-assistant, but they're all deprecated.
 so just do this:
 
 ```bash
+kubectl apply -f home-assistant/external-secret.yaml && \
 kubectl apply -f home-assistant/configuration-yaml.yaml && \
 kubectl apply -f home-assistant/home-assistant.yaml
 ```
