@@ -31,13 +31,7 @@ cert-manager jetstack/cert-manager \
 ### 2. create cloudflare secret
 
 ```bash
-kubectl -n cert-manager create secret generic cloudflare-api-key-secret
-kubectl -n cert-manager edit secret cloudflare-api-key-secret
-```
-
-```yaml
-data:
-    api-key: <base64 api key here>
+kubectl apply -f external-secret.yaml
 ```
 
 ### 3. install clusterissuer

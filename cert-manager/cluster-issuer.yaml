@@ -4,6 +4,8 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt-staging
   namespace: cert-manager
+  annotations:
+    secret.reloader.stakater.com/reload: "cloudflare"
 spec:
   acme:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
@@ -21,7 +23,7 @@ spec:
         cloudflare:
           email: ch@rlesthom.as
           apiTokenSecretRef:
-            name: cloudflare-api-key-secret
+            name: cloudflare
             key: api-key
 
 ---
@@ -30,6 +32,8 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt-production
   namespace: cert-manager
+  annotations:
+    secret.reloader.stakater.com/reload: "cloudflare"
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
@@ -47,5 +51,5 @@ spec:
         cloudflare:
           email: ch@rlesthom.as
           apiTokenSecretRef:
-            name: cloudflare-api-key-secret
+            name: cloudflare
             key: api-key
