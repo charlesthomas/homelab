@@ -22,10 +22,9 @@ sudo chmod 604 /var/lib/rancher/k3s/server/tls/client-admin.key
 
 ### influxdb access
 
-in order send metrics to the [influxdb2](/influxdb2/) server, telegraf needs to auth.
-i did this by `kubectl get`-ting the secret from the `influxdb2` namespace and `kubectl apply`-ing it to the `telegraf` namespace
-
-i could figure out a one-liner for this, but it's temporary anyway until i get secrets management sorted out. instead i had to write the file to disk, so i could edit the namespace to change it from `influxdb2` to `telegraf` or else it would just re-apply the secret to the namespace it's already in
+```bash
+kubectl apply -f telegraf/external-secrets.yaml
+```
 
 ### get the chart
 

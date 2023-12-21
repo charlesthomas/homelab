@@ -13,8 +13,7 @@ it's in the same position home-assistant is: the most up-to-date one i could fin
 if you lose the secret
 
 ```bash
-kubectl -n zigbee2mqtt create secret generic zigbee2mqtt
-kubectl -n zigbee2mqtt edit secret zigbee2mqtt
+kubectl apply -f zigbee2mqtt/external-secrets.yaml
 ```
 
 ```yaml

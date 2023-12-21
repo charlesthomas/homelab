@@ -6,7 +6,7 @@ DNS server
 
 ```bash
 kubectl create namespace pihole
-kubectl create -n pihole secret generic pihole-admin
+kubectl apply -f pihole/external-secret.yaml
 ```
 
 ## get the chart

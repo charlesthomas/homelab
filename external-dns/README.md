@@ -42,25 +42,13 @@ helm show values external-dns/external-dns > external-dns/stock-values.yaml
 kubectl create namespace external-dns
 ```
 
-### add cloudflare api token
+### add cloudflare api token & pihole admin password secrets
 
 ```bash
-kubectl -n external-dns create secret generic cloudflare
-kubectl -n external-dns edit secret cloudflare
+kubectl apply -f external-dns/external-secrets.yaml
 ```
 
-```yaml
-data:
-    cf-api-token: <base64 cf api token>
-```
-
-### add pihole secret
-
-```bash
-kubectl -n pihole get secret pihole-admin -o yaml | \
-sed 's/namespace: pihole/namespace: external-dns/' | \
-kubectl apply -f -
-```
+### apply the chart
 
 ```bash
 helm upgrade --install external-dns-pihole external-dns/external-dns \
