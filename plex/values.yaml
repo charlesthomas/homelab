@@ -1,0 +1,44 @@
+image:
+  registry: index.docker.io
+  repository: plexinc/pms-docker
+  tag: "1.32.8.7639-fb6452ebf"
+  pullPolicy: IfNotPresent
+
+ingress:
+  enabled: false
+
+pms:
+  storageClassName: longhorn-retain
+  configStorage: 10Gi
+
+statefulSet:
+  annotations:
+    reloader.stakater.com/auto: "true"
+
+service:
+  type: ClusterIP
+  port: 32400
+
+extraEnv:
+  TZ: "America/Detroit"
+  HOSTNAME: "plex.crt.house"
+  ALLOWED_NETWORKS: "127.0.0.1,192.168.1.0/24,10.42.0.0/16"
+  PLEX_CLAIM: "<CLAIMGOESHERE>"
+
+extraVolumeMounts:
+  - name: media
+    mountPath: /media
+  - name: critical-media
+    mountPath: /critical_media
+
+extraVolumes:
+  - name: media
+    nfs:
+      server: nas01.crt.house
+      path: /volume1/media
+      readOnly: true
+  - name: critical-media
+    nfs:
+      server: nas01.crt.house
+      path: /volume1/critical/media
+      readOnly: true
