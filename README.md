@@ -13,6 +13,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 
 - k8s fanciness
   - [descheduler](/descheduler/)
+  - [external-secrets](/external-secrets/)
   - [node-feature-discovery](/node-feature-discovery)
   - [reloader](/reloader/)
 - networking & routing
@@ -38,3 +39,10 @@ instructions, manifests, scripts, etc for my home lab running on k3s
   - [home-assistant](/home-assistant/)
   - [mosquitto](/mosquitto/)
   - [zigbee2mqtt](/zigbee2mqtt/)
+- plex
+  - [plex](/plex/)
+  - intel plugins for hardware transcoding (see plex `README`)
+    - [intel-device-plugins-operator](/intel-device-plugins-operator/)
+    - [intel-device-plugins-gpu](/intel-device-plugins-gpu/)
+- misc
+  - [vault-warden](/vault-warden/)

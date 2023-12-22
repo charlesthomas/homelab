@@ -1,0 +1,5 @@
+manager:
+  image:
+    hub: intel
+    tag: ""
+    pullPolicy: IfNotPresent

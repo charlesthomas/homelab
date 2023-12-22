@@ -1,47 +1,78 @@
 # plex
 
-## get the chart
-
-```bash
-helm repo add plex https://raw.githubusercontent.com/plexinc/pms-docker/gh-pages
-helm repo update
-```
-
-## get the stock values
-
-```bash
-helm show values plex/plex-media-server > plex/stock-values.yaml
-```
-
-## kustomize build
-
-"claiming" the server is a huge hassle. i couldn't get it to work via `kubectl port-forward`, and because plex insists on doing a bunch of bullshit to make remote access "easier," directly accessing the URL i am serving it from **DOESN'T LET ME ACCESS THE SERVICE** to configure it
-
-i also tried mounting the claim token as an `extraEnv`, but of course it wouldn't accept
+plex was a massive hassle, because it just won't work without
 
 ```yaml
-extraEnv:
-    PLEX_CLAIM:
-        valueFrom:
-            secretRef:
-                name: plex-claim
-                key: claim-token
+hostNetwork: true
 ```
 
-it rendered it as a bunch of garbage; likely due to [this](https://github.com/charlesthomas/pms-docker/blob/master/charts/plex-media-server/templates/statefulset.yaml#L104)
+but the chart doesn't set it
+
+the chart has several other bugs, and one design thing i don't like: it's a statefulset
+
+rather than waste more time farting around with it, i just converted it myself, and i'm not going to use the chart
+
+## claiming
+
+**BEFORE** applying the file, i went to [plex.tv/claim](https://plex.tv/claim) and got a claim token
+
+then i manually injected it into `plex/plex.yaml` in the deployment template spec envs (search for `CLAIMGOESHERE` and replace it)
+
+## installation
+
+```bash
+kubectl apply -f plex/plex.yaml
+```
+
+## configuration
+
+even though i don't think i should have had to do this, i still did a port-forward to configure the media server for the first time
+
+🤞 i don't have to do it again if the pod rolls, because it was a giant pain in the ass
+
+```bash
+kubectl -n plex port-forward svc/plex-media-server 32400:32400
+```
+
+## transcoding
+
+hardware transcoding _appears to be working_ ?
+
+i used [this guide](https://www.reddit.com/r/selfhosted/comments/121vb07/plex_on_kubernetes_with_intel_igpu_passthrough/) to get it to work
+
+and it depends on
+
+1. **manually labeling nodes** with the following
 
 ```yaml
-        {{- range $key, $value := .Values.extraEnv }}
-        - name: {{ $key }}
-          value: {{ $value | quote }} # <-- the `| quote` is the problem, i suspect
-        {{- end }}
+metadata:
+  labels:
+    intel.feature.node.kubernetes.io/gpu: "true"
 ```
 
-instead:
+2. installing [intel-device-plugins-operator](/intel-device-plugins-operator/)
 
-1. render the file locally `kubectl kustomize --enable-helm plex/ > plex/plex.yaml`
-1. get a claim token from [https://plex.tv/claim](https://plex.tv/claim)
-1. inject the token into `plex/plex.yaml` manually
-1. `kubectl apply -f plex/plex.yaml`
+3. installing [intel-device-plugins-gpu](/intel-device-plugins-gpu/)
 
-`¯\_(ツ)_/¯`
+quoting the important bits in case reddit implodes before this repo does:
+
+> Here's a step-by-step guide to get you started:
+> 
+> Tagging nodes: Tag your nodes that have a GPU with the label intel.feature.node.kubernetes.io/gpu=trueThis ensures that your GPU-dependent deployments will use the appropriate machines.
+> 
+> Install a certificate manager: You'll need a certificate manager, and the recommended Helm chart is available at https://cert-manager.io/docs/installation/helm/.
+> 
+> Install the Intel Device Plugin Operator: More information on this can be found at https://github.com/intel/intel-device-plugins-for-kubernetes/blob/main/cmd/operator/README.md. I highly recommend installing this operator via the Helm chart available here: https://github.com/intel/helm-charts/tree/main/charts/device-plugin-operator.
+> 
+> Install the GPU Plugin: This plugin is also provided by Intel and available as a Helm chart at https://github.com/intel/helm-charts/tree/main/charts/gpu-device-plugin.
+> 
+> Install Plex: I created my own Helm chart for this, but you can use the plexinc/pms-dockerimage. The crucial part is to include the following snippet of code in your deployment to ensure that your pod requests the Intel iGPU of your machine:
+>
+>
+```yaml
+resources: 
+    requests: 
+        gpu.intel.com/i915: "1" 
+    limits: 
+        gpu.intel.com/i915: "1" 
+```

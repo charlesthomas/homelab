@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -9,12 +10,9 @@ kind: ServiceAccount
 metadata:
   labels:
     app: plex-media-server
-    app.kubernetes.io/instance: plex
-    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: plex-media-server
     app.kubernetes.io/version: 1.16.0
-    helm.sh/chart: plex-media-server-0.1.7
-  name: plex-plex-media-server
+  name: plex-media-server
   namespace: plex
 ---
 apiVersion: v1
@@ -22,12 +20,8 @@ kind: Service
 metadata:
   labels:
     app: plex-media-server
-    app.kubernetes.io/instance: plex
-    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: plex-media-server
-    app.kubernetes.io/version: 1.16.0
-    helm.sh/chart: plex-media-server-0.1.7
-  name: plex-plex-media-server
+  name: plex-media-server
   namespace: plex
 spec:
   ports:
@@ -40,36 +34,41 @@ spec:
     app.kubernetes.io/name: plex-media-server
   type: ClusterIP
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-media-server
+  namespace: plex
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: longhorn-retain
+  volumeMode: Filesystem
+---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   annotations:
     reloader.stakater.com/auto: "true"
   labels:
     app: plex-media-server
-    app.kubernetes.io/instance: plex
-    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: plex-media-server
-    app.kubernetes.io/version: 1.16.0
-    helm.sh/chart: plex-media-server-0.1.7
-    name: plex-plex-media-server
-  name: plex-plex-media-server
+    name: plex-media-server
+  name: plex-media-server
   namespace: plex
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/instance: plex
       app.kubernetes.io/name: plex-media-server
-  serviceName: plex-plex-media-server
   template:
     metadata:
       labels:
         app: plex-media-server
-        app.kubernetes.io/instance: plex
-        app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: plex-media-server
-        app.kubernetes.io/version: 1.16.0
-        helm.sh/chart: plex-media-server-0.1.7
     spec:
       hostNetwork: true
       affinity: {}
@@ -83,7 +82,7 @@ spec:
           value: America/Detroit
         image: index.docker.io/plexinc/pms-docker:1.32.8.7639-fb6452ebf
         imagePullPolicy: IfNotPresent
-        name: plex-plex-media-server-pms
+        name: plex-media-server-pms
         ports:
         - containerPort: 32400
           name: pms
@@ -96,14 +95,22 @@ spec:
           name: media
         - mountPath: /critical_media
           name: critical-media
+        resources: 
+          requests: 
+              gpu.intel.com/i915: "1" 
+          limits: 
+              gpu.intel.com/i915: "1" 
       initContainers: null
       nodeSelector: {}
-      serviceAccountName: plex-plex-media-server
+      serviceAccountName: plex-media-server
       terminationGracePeriodSeconds: 120
       tolerations: []
       volumes:
-      - emptyDir: {}
-        name: pms-transcode
+      - name: pms-transcode
+        emptyDir: {}
+      - name: pms-config
+        persistentVolumeClaim:
+          claimName: plex-media-server
       - name: media
         nfs:
           path: /volume1/media
@@ -114,16 +121,6 @@ spec:
           path: /volume1/critical/media
           readOnly: true
           server: nas01.crt.house
-  volumeClaimTemplates:
-  - metadata:
-      name: pms-config
-    spec:
-      accessModes:
-      - ReadWriteOnce
-      resources:
-        requests:
-          storage: 10Gi
-      storageClassName: longhorn
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -133,8 +130,8 @@ metadata:
     external-dns.alpha.kubernetes.io/target: crt.house
   labels:
     app: plex-media-server
-    name: plex-plex-media-server-ingress
-  name: plex-plex-media-server-ingress
+    name: plex-media-server-ingress
+  name: plex-media-server-ingress
   namespace: plex
 spec:
   ingressClassName: crt-house-external
@@ -144,7 +141,7 @@ spec:
       paths:
       - backend:
           service:
-            name: plex-plex-media-server
+            name: plex-media-server
             port:
               number: 32400
         path: /
