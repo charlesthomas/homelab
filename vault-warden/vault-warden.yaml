@@ -128,10 +128,11 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
 spec:
-  ingressClassName: "crt-house-external"
+  ingressClassName: "nginx-external"
   tls:
     - hosts:
         - "vault.crt.house"
+      secretName: crt.house
   rules:
     - host: "vault.crt.house"
       http:

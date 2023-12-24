@@ -134,7 +134,7 @@ metadata:
   name: plex-media-server-ingress
   namespace: plex
 spec:
-  ingressClassName: crt-house-external
+  ingressClassName: nginx-external
   rules:
   - host: plex.crt.house
     http:
@@ -149,3 +149,4 @@ spec:
   tls:
   - hosts:
     - plex.crt.house
+    secretName: crt.house

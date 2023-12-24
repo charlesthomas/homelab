@@ -15,3 +15,9 @@ kubectl apply -f shlink/mariadb.yaml
 ```bash
 kubectl apply -f shlink/shlink.yaml
 ```
+
+## install shlink web client
+
+```bash
+kubectl apply -f shlink/client.yaml
+```

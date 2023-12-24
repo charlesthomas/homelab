@@ -1,0 +1,118 @@
+controller:
+  name: controller
+
+  ## The kind of the Ingress Controller installation - deployment or daemonset.
+  kind: deployment
+
+  # 0 to 3 ?
+  logLevel: 2
+
+  image:
+    repository: nginx/nginx-ingress
+    pullPolicy: IfNotPresent
+    # tag: "3.3.2"
+
+  config:
+    # name: nginx-config
+
+    ## The annotations of the Ingress Controller configmap.
+    annotations: {}
+
+    ## The entries of the ConfigMap for customizing NGINX configuration.
+    entries: {}
+
+  ## It is recommended to use your own TLS certificates and keys
+  defaultTLS:
+    secret: "nginx-crt-lol/crt.lol"
+
+  wildcardTLS:
+    secret: "nginx-crt-lol/crt.lol"
+
+  ## The additional environment variables to be set on the Ingress Controller pods.
+  env: []
+  # - name: MY_VAR
+  #   value: myvalue
+
+  ## The volumes of the Ingress Controller pods.
+  volumes: []
+  # - name: extra-conf
+  #   configMap:
+  #     name: extra-conf
+
+  ## The volumeMounts of the Ingress Controller pods.
+  volumeMounts: []
+  # - name: extra-conf
+  #   mountPath: /etc/nginx/conf.d/extra.conf
+  #   subPath: extra.conf
+
+  ## The number of replicas of the Ingress Controller deployment.
+  replicaCount: 1
+
+  ingressClass:
+    name: nginx-crt-lol
+    create: true
+
+  nginxStatus:
+    ## Enable the NGINX stub_status, or the NGINX Plus API.
+    enable: true
+
+    ## Set the port where the NGINX stub_status or the NGINX Plus API is exposed.
+    port: 8080
+
+    ## Add IPv4 IP/CIDR blocks to the allow list for NGINX stub_status or the NGINX Plus API. Separate multiple IP/CIDR by commas.
+    allowCidrs: "127.0.0.1"
+
+  service:
+    type: LoadBalancer
+    annotations:
+      metallb.universe.tf/address-pool: internal
+
+    ## The IP ranges (CIDR) that are allowed to access the load balancer. Requires controller.service.type set to LoadBalancer. The cloud provider must support this feature.
+    loadBalancerSourceRanges: []
+
+    httpPort:
+      enable: true
+      port: 80
+
+    httpsPort:
+      enable: true
+      port: 443
+
+    customPorts: []
+
+prometheus:
+  ## Expose NGINX or NGINX Plus metrics in the Prometheus format.
+  create: false
+
+  ## Configures the port to scrape the metrics.
+  port: 9113
+
+  ## Specifies the namespace/name of a Kubernetes TLS Secret which will be used to protect the Prometheus endpoint.
+  secret: ""
+
+  ## Configures the HTTP scheme used.
+  scheme: http
+
+  service:
+    ## Creates a ClusterIP Service to expose Prometheus metrics internally
+    ## Requires prometheus.create=true
+    create: false
+
+    labels:
+      service: "nginx-ingress-prometheus-service"
+
+  serviceMonitor:
+    ## Creates a serviceMonitor to expose statistics on the kubernetes pods.
+    create: false
+
+    ## Kubernetes object labels to attach to the serviceMonitor object.
+    labels: {}
+
+    ## A set of labels to allow the selection of endpoints for the ServiceMonitor.
+    selectorMatchLabels:
+      service: "nginx-ingress-prometheus-service"
+
+    ## A list of endpoints allowed as part of this ServiceMonitor.
+    ## Matches on the name of a Service port.
+    endpoints:
+     - port: prometheus

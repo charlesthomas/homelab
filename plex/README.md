@@ -18,6 +18,14 @@ rather than waste more time farting around with it, i just converted it myself, 
 
 then i manually injected it into `plex/plex.yaml` in the deployment template spec envs (search for `CLAIMGOESHERE` and replace it)
 
+## duplicate cert secret
+
+```bash
+kubectl -n nginx-crt-house get secret crt.house -o yaml | \
+sed 's/namespace: nginx-crt-house/namespace: plex/' | \
+kubectl apply -f -
+```
+
 ## installation
 
 ```bash

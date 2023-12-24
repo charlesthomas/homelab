@@ -27,8 +27,9 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 - ssl & reverse proxy-ing
   - [cert-manager](/cert-manager/)
   - nginx
-    - [crt.house internal](/nginx-crt-house/)
-    - [crt.house external](/nginx-crt-house-external/)
+    - [crt.house](/nginx-crt-house/)
+    - [crt.lol](/nginx-crt-lol/)
+    - [external](/nginx-external/)
 - observability
   - [grafana](/grafana/)
   - [influxdb2](/influxdb2/)

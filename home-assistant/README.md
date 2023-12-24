@@ -24,6 +24,14 @@ home-assistant/generate-automations.sh && \
 kubectl apply -f home-assistant/automations-yaml.yaml
 ```
 
+## duplicate the cert secret
+
+```bash
+kubectl -n nginx-crt-house get secret crt.house -o yaml | \
+sed 's/namespace: nginx-crt-house/namespace: home-assistant/' | \
+kubectl apply -f -
+```
+
 ## installation
 
 there are a bunch of helm charts for home-assistant, but they're all deprecated.

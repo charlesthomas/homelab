@@ -142,10 +142,11 @@ metadata:
     external-dns.alpha.kubernetes.io/target: crt.house
     nginx.org/websocket-services: home-assistant
 spec:
-  ingressClassName: crt-house-external
+  ingressClassName: nginx-external
   tls:
     - hosts:
       - ass.crt.house
+      secretName: crt.house
   rules:
     - host: "ass.crt.house"
       http:

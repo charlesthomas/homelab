@@ -89,3 +89,30 @@ spec:
               port: http
             initialDelaySeconds: 30
             periodSeconds: 60
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: href.crt.lol
+    external-dns.alpha.kubernetes.io/target: crt.lol
+  labels:
+    app: shlink
+  name: shlink
+  namespace: shlink
+spec:
+  ingressClassName: nginx-external
+  rules:
+  - host: href.crt.lol
+    http:
+      paths:
+      - backend:
+          service:
+            name: shlink-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - href.crt.lol

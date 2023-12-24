@@ -23,10 +23,10 @@ controller:
 
   ## It is recommended to use your own TLS certificates and keys
   defaultTLS:
-    secret: "nginx-crt-house/crt.house"
+    secret: "nginx-crt-lol/crt.lol"
 
   wildcardTLS:
-    secret: "nginx-crt-house/crt.house"
+    secret: "nginx-crt-lol/crt.lol"
 
   ## The additional environment variables to be set on the Ingress Controller pods.
   env: []
@@ -49,9 +49,8 @@ controller:
   replicaCount: 2
 
   ingressClass:
-    name: crt-house-external
+    name: nginx-external
     create: true
-    setAsDefaultIngress: true
 
   nginxStatus:
     ## Enable the NGINX stub_status, or the NGINX Plus API.

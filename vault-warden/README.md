@@ -13,6 +13,14 @@ so i converted it to a deployment
 helm repo add vaultwarden https://guerzon.github.io/vaultwarden
 ```
 
+## duplicate cert secret
+
+```bash
+kubectl -n nginx-crt-house get secret crt.house -o yaml | \
+sed 's/namespace: nginx-crt-house/namespace: vault-warden/' | \
+kubectl apply -f -
+```
+
 ## install
 
 ```bash
