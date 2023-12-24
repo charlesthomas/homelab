@@ -1,0 +1,57 @@
+# Default values for shlink.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: shlinkio/shlink
+  pullPolicy: IfNotPresent
+  tag: 3.7.1
+
+env:
+  SHORT_DOMAIN_HOST: href.crt.lol
+  INVALID_SHORT_URL_REDIRECT_TO: https://charlesthomas.dev
+  BASE_URL_REDIRECT_TO: https://charlesthomas.dev
+  REGULAR_404_REDIRECT_TO: https://charlesthomas.dev
+  ANONYMIZE_REMOTE_ADDR: false  # Tells if IP addresses from visitors should be obfuscated before storing them in the database.
+  DELETE_SHORT_URL_THRESHOLD: 1
+  DEFAULT_SHORT_CODES_LENGTH: 4
+
+mariadb:
+  replication:
+    enabled: false
+
+  ## Create a database and a database user
+  ## ref: https://github.com/bitnami/bitnami-docker-mariadb/blob/master/README.md#creating-a-database-user-on-first-run
+  ##
+  db:
+    name: shlink
+    user: shlink
+    ## If the password is not specified, mariadb will generates a random password
+    ##
+    # password:
+
+  service:
+    port: 3306
+
+  ## MariaDB admin password
+  ## ref: https://github.com/bitnami/bitnami-docker-mariadb/blob/master/README.md#setting-the-root-password-on-first-run
+  ##
+  # rootUser:
+  #   password:
+
+serviceAccount:
+  create: true
+  name: shlink
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations:
+    kubernetes.io/ingress.class: crt-lol
+    external-dns.alpha.kubernetes.io/hostname: href.crt.lol
+    external-dns.alpha.kubernetes.io/target: crt.lol
