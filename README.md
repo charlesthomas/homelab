@@ -46,4 +46,5 @@ instructions, manifests, scripts, etc for my home lab running on k3s
     - [intel-device-plugins-operator](/intel-device-plugins-operator/)
     - [intel-device-plugins-gpu](/intel-device-plugins-gpu/)
 - misc
+  - [shlink](/shlink/)
   - [vault-warden](/vault-warden/)
