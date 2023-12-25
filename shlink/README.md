@@ -19,5 +19,5 @@ kubectl apply -f shlink/shlink.yaml
 ## install shlink web client
 
 ```bash
-kubectl apply -f shlink/client.yaml
+kubectl apply -f shlink/web-client.yaml
 ```
