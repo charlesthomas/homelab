@@ -32,10 +32,9 @@ spec:
     - name: web
       port: 80
       protocol: TCP
-      targetPort: 80
+      targetPort: web
   selector:
     app.kubernetes.io/name: shlink-web-client
-    app.kubernetes.io/instance: shlink-web-client
 ---
 apiVersion: apps/v1
 kind: Deployment
