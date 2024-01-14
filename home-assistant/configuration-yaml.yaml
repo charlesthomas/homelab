@@ -28,8 +28,8 @@ data:
       - name: "default"
         min_brightness: 100
         max_brightness: 100
-        min_color_temp: 2000
-        max_color_temp: 5500
+        min_color_temp: 2500
+        max_color_temp: 6500
         lights: [
           "light.desk_lamp_left",
           "light.desk_lamp_right",
@@ -45,8 +45,8 @@ data:
       - name: "red"
         min_brightness: 100
         max_brightness: 100
-        min_color_temp: 2000
-        max_color_temp: 5500
+        min_color_temp: 2500
+        max_color_temp: 6500
         sleep_brightness: 35
         sleep_rgb_or_color_temp: rgb_color
         sleep_rgb_color: [255, 0, 0]
