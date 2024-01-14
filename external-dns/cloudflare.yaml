@@ -12,7 +12,7 @@ env:
     valueFrom:
       secretKeyRef:
         name: cloudflare
-        key: cf-api-token
+        key: api-key
 
 extraArgs:
 - --cloudflare-dns-records-per-page=5000
