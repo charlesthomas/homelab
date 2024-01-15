@@ -24,6 +24,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 - storage
   - [longhorn](/longhorn/)
   - [nfs](/nfs/)
+  - [offsite-backups](/offsite-backups/)
 - ssl & reverse proxy-ing
   - [cert-manager](/cert-manager/)
   - nginx

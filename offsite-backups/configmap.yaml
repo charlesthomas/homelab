@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sync-script
+  namespace: offsite-backups
+data:
+  sync.sh: |-
+    #!/bin/sh
+    mkdir /root/.ssh
+    cp -v /ssh/* /root/.ssh
+    chmod -R 600 /root/.ssh
+    rsync --archive --compress --delete-after --size-only --verbose /critical/ nas02:/mnt/nas02/critical/
+    rsync --archive --compress --delete-after --size-only --verbose /time-machine/ nas02:/mnt/nas02/time-machine/
