@@ -13,6 +13,38 @@ spec:
         spec:
           restartPolicy: Never
           serviceAccountName: tailscale
+          initContainers:
+          - name: tailscale
+            imagePullPolicy: IfNotPresent
+            image: "ghcr.io/tailscale/tailscale:latest"
+            readinessProbe:
+              exec:
+                command:
+                - 'tailscale'
+                - 'ping'
+                - '-c=1'
+                - '--timeout=15s'
+                - '--until-direct=false'
+                - 'offsite-rpi'
+              initialDelaySeconds: 30
+              periodSeconds: 30
+            restartPolicy: Always
+            securityContext:
+              capabilities:                                                              
+                add:                                                                     
+                - NET_ADMIN
+            env:
+            - name: TS_KUBE_SECRET
+              value: "tailscale"
+            - name: TS_USERSPACE
+              value: "false"
+            - name: TS_ACCEPT_DNS
+              value: "true"
+            - name: TS_AUTHKEY
+              valueFrom:
+                secretKeyRef:
+                  name: tailscale-auth
+                  key: TS_AUTHKEY
           containers:
           - name: rsync
             image: ghcr.io/charlesthomas/alpine-rsync:latest
@@ -30,25 +62,6 @@ spec:
               name: ssh
             - mountPath: /time-machine
               name: time-machine
-          - name: tailscale
-            imagePullPolicy: Always
-            image: "ghcr.io/tailscale/tailscale:latest"
-            securityContext:
-              capabilities:                                                              
-                add:                                                                     
-                - NET_ADMIN
-            env:
-            - name: TS_KUBE_SECRET
-              value: "tailscale"
-            - name: TS_USERSPACE
-              value: "false"
-            - name: TS_ACCEPT_DNS
-              value: "true"
-            - name: TS_AUTHKEY
-              valueFrom:
-                secretKeyRef:
-                  name: tailscale-auth
-                  key: TS_AUTHKEY
           volumes:
           - name: critical
             nfs:

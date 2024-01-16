@@ -10,5 +10,6 @@ data:
     mkdir /root/.ssh
     cp -v /ssh/* /root/.ssh
     chmod -R 600 /root/.ssh
-    rsync --archive --compress --delete-after --size-only --verbose /critical/ nas02:/mnt/nas02/critical/
-    rsync --archive --compress --delete-after --size-only --verbose /time-machine/ nas02:/mnt/nas02/time-machine/
+    sleep 30
+    rsync --archive --compress --delete-after --size-only --verbose /critical/ offsite-rpi:/mnt/nas02/critical/
+    rsync --archive --compress --delete-after --size-only --verbose /time-machine/ offsite-rpi:/mnt/nas02/time-machine/
