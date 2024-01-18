@@ -41,11 +41,17 @@ instructions, manifests, scripts, etc for my home lab running on k3s
   - [home-assistant](/home-assistant/)
   - [mosquitto](/mosquitto/)
   - [zigbee2mqtt](/zigbee2mqtt/)
-- plex
-  - [plex](/plex/)
-  - intel plugins for hardware transcoding (see plex `README`)
-    - [intel-device-plugins-operator](/intel-device-plugins-operator/)
-    - [intel-device-plugins-gpu](/intel-device-plugins-gpu/)
+- media
+  - [metube](/metube/)
+  - plex
+    - [plex](/plex/)
+    - intel plugins for hardware transcoding (see plex `README`)
+      - [intel-device-plugins-operator](/intel-device-plugins-operator/)
+      - [intel-device-plugins-gpu](/intel-device-plugins-gpu/)
+  - [prowlarr](/prowlarr/)
+  - [radarr](/radarr/)
+  - [rsync-seedbox](/rsync-seedbox/)
+  - [sonarr](/sonarr/)
 - misc
   - [shlink](/shlink/) link shortener
   - [vault-warden](/vault-warden/) password manager

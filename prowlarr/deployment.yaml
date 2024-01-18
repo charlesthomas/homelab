@@ -1,0 +1,57 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: prowlarr
+  namespace: prowlarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prowlarr
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+    spec:
+      dnsConfig:
+        nameservers:
+        - 192.168.1.8
+      dnsPolicy: None
+      containers:
+      - name: prowlarr
+        image: ghcr.io/linuxserver/prowlarr:1.11.4.4173-ls47
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: prowlarr
+          containerPort: 9696
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "America/Detroit"
+        - name: UMASK
+          value: "022"
+        volumeMounts:
+        - name: prowlarr
+          mountPath: /config
+        resources:
+          limits:
+            memory: 700Mi
+          requests:
+            memory: 350Mi
+        readinessProbe:
+          tcpSocket:
+            port: prowlarr
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: prowlarr
+          initialDelaySeconds: 15
+          periodSeconds: 20
+      volumes:
+      - name: prowlarr
+        persistentVolumeClaim:
+          claimName: prowlarr

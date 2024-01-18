@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sync-script
+  namespace: rsync-seedbox
+data:
+  sync.sh: |-
+    #!/bin/sh
+    mkdir /root/.ssh
+    cp -v /ssh/* /root/.ssh
+    chmod -R 600 /root/.ssh
+    rsync -rlt --compress --delete-after --size-only --verbose seedbox:downloads/complete/ /complete/

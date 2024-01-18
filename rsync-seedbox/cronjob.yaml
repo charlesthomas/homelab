@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rsync-seedbox
+  namespace: rsync-seedbox
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "*/15 * * * *"
+  timeZone: America/Detroit
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          hostNetwork: true
+          restartPolicy: Never
+          containers:
+          - name: rsync
+            image: ghcr.io/charlesthomas/alpine-rsync:latest
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            args:
+            - /opt/sync.sh
+            volumeMounts:
+            - mountPath: /complete
+              name: complete
+            - mountPath: /opt
+              name: sync-script
+            - mountPath: /ssh
+              name: ssh
+          volumes:
+          - name: complete
+            nfs:
+              path: /volume1/media/complete
+              server: 192.168.1.21
+          - name: ssh
+            secret:
+              secretName: ssh
+          - name: sync-script
+            configMap:
+              name: sync-script

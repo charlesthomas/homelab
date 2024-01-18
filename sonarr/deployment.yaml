@@ -1,0 +1,76 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: sonarr
+  namespace: sonarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      dnsConfig:
+        nameservers:
+        - 192.168.1.8
+      dnsPolicy: None
+      containers:
+      - name: sonarr
+        image: ghcr.io/linuxserver/sonarr:4.0.0.748-ls221
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: sonarr
+          containerPort: 8989
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "America/Detroit"
+        - name: UMASK
+          value: "022"
+        volumeMounts:
+        - name: sonarr
+          mountPath: /config
+        - name: complete
+          mountPath: /mnt/complete
+        - name: critical-tv
+          mountPath: /mnt/critical-tv
+        - name: tv
+          mountPath: /mnt/tv
+        resources:
+          limits:
+            memory: 700Mi
+          requests:
+            memory: 350Mi
+        readinessProbe:
+          tcpSocket:
+            port: sonarr
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: sonarr
+          initialDelaySeconds: 15
+          periodSeconds: 20
+      volumes:
+      - name: sonarr
+        persistentVolumeClaim:
+          claimName: sonarr
+      - name: complete
+        nfs:
+          path: /volume1/media/complete
+          server: nas01.crt.house
+      - name: critical-tv
+        nfs:
+          path: /volume1/critical/media/tv
+          server: nas01.crt.house
+      - name: tv
+        nfs:
+          path: /volume1/media/tv
+          server: nas01.crt.house
+

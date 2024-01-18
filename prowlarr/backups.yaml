@@ -1,0 +1,16 @@
+---
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: prowlarr
+  namespace: longhorn
+spec:
+  concurrency: 1
+  cron: 0 2 * * *
+  groups:
+  - prowlarr
+  labels:
+    app: prowlarr
+  name: prowlarr
+  retain: 7
+  task: backup

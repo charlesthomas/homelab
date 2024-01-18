@@ -1,0 +1,16 @@
+---
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: sonarr
+  namespace: longhorn
+spec:
+  concurrency: 1
+  cron: 0 2 * * *
+  groups:
+  - sonarr
+  labels:
+    app: sonarr
+  name: sonarr
+  retain: 7
+  task: backup

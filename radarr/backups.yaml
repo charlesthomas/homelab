@@ -1,0 +1,16 @@
+---
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: radarr
+  namespace: longhorn
+spec:
+  concurrency: 1
+  cron: 0 2 * * *
+  groups:
+  - radarr
+  labels:
+    app: radarr
+  name: radarr
+  retain: 7
+  task: backup
