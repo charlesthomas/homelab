@@ -33,13 +33,13 @@ spec:
           value: "America/Detroit"
         - name: UMASK
           value: "022"
+        - name: DOWNLOAD_DIR
+          value: /downloads/youtube/
         - name: YTDL_OPTIONS
           value: "{\"cookiefile\":\"/cookies/cookies.txt\"}"
         volumeMounts:
         - name: cookies
           mountPath: /cookies
-        - name: critical-tv
-          mountPath: /downloads/critical-tv
         - name: youtube
           mountPath: /downloads/youtube
         resources:
@@ -61,10 +61,6 @@ spec:
       - name: cookies
         secret:
           secretName: cookies
-      - name: critical-tv
-        nfs:
-          path: /volume1/critical/media/tv
-          server: nas01.crt.house
       - name: youtube
         nfs:
           path: /volume1/media/youtube
