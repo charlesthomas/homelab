@@ -53,5 +53,6 @@ instructions, manifests, scripts, etc for my home lab running on k3s
   - [rsync-seedbox](/rsync-seedbox/)
   - [sonarr](/sonarr/)
 - misc
+  - [homepage](/homepage/) dashboard
   - [shlink](/shlink/) link shortener
   - [vault-warden](/vault-warden/) password manager

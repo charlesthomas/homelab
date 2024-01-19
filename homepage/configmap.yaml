@@ -1,0 +1,67 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage
+  namespace: homepage
+data:
+  settings.yaml: |-
+    title: dash.crt.house
+    startUrl: https://dash.crt.house
+    layout:
+      Media:
+        style: row
+        columns: 4
+      Home Automation:
+        style: row
+        columns: 4
+      Misc:
+        style: row
+        columns: 4
+      Observability:
+        style: row
+        columns: 4
+  services.yaml: |-
+    - Media:
+      - Plex:
+          href: https://plex.crt.house
+          description: Media Player
+      - Radarr:
+          href: https://radarr.crt.house
+          description: Movie Finder
+      - Sonarr:
+          href: https://sonarr.crt.house
+          description: TV Finder
+      - MeTube:
+          href: https://metube.crt.house
+          description: YouTube Saver
+    - Home Automation:
+      - Home Assitant:
+          href: https://ass.crt.house
+          description: Home Controller
+      - Zigbee2mqtt:
+          href: https://zigbee2mqtt.crt.house
+          description: Zigbee Device Pair...er
+    - Misc:
+      - Pi-Hole:
+          href: https://pihole.crt.house
+          description: Ad-Blocking DNS Server
+      - Shlink:
+          href: https://shlink.crt.house
+          description: URL Shortener
+      - VaultWarden:
+          href: https://vault.crt.house
+          description: Password Manager
+    - Observability:
+      - Grafana:
+          href: https://grafana.crt.house
+          description: Metric & Log Viewer
+      - InfluxDB:
+          href: https://influxdb.crt.house
+          description: Metric & Log Storer
+  docker.yaml: ""
+  bookmarks.yaml: ""
+  widgets.yaml: ""
+  custom.css: ""
+  custom.js: ""
+  kubernetes.yaml: ""

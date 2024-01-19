@@ -1,0 +1,78 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: homepage
+  namespace: homepage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homepage
+  template:
+    metadata:
+      labels:
+        app: homepage
+    spec:
+      # initContainers:
+      # - name: cp
+      #   image: alpine:latest
+      #   imagePullPolicy: IfNotPresent
+      #   command:
+      #   - /bin/sh
+      #   - -c
+      #   - 'cp -v /_config/* /config/'
+      #   volumeMounts:
+      #   - name: config-cm
+      #     mountPath: /_config
+      #   - name: config
+      #     mountPath: /config
+      containers:
+      - name: homepage
+        image: ghcr.io/gethomepage/homepage:v0.8.4
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "America/Detroit"
+        - name: UMASK
+          value: "022"
+        resources:
+          limits:
+            memory: 700Mi
+          requests:
+            memory: 350Mi
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          failureThreshold: 5
+          timeoutSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 5
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: logs
+          mountPath: /config/logs
+      volumes:
+      - name: config
+        configMap:
+          name: homepage
+      # - name: config
+        # emptyDir: {}
+      - name: logs
+        emptyDir: {}
