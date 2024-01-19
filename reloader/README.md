@@ -7,8 +7,8 @@ reload deployments when their configmaps / secrets change
 ```yaml
 kind: Deployment
 metadata:
-    annotations:
-        reloader.stakater.com/auto: "true"
+  annotations:
+    reloader.stakater.com/auto: "true"
 ```
 
 current uses:
