@@ -24,39 +24,54 @@ data:
   services.yaml: |-
     - Media:
       - Plex:
+          icon: plex
           href: https://plex.crt.house
           description: Media Player
       - Radarr:
+          icon: radarr
           href: https://radarr.crt.house
           description: Movie Finder
       - Sonarr:
+          icon: sonarr
           href: https://sonarr.crt.house
           description: TV Finder
       - MeTube:
+          icon: metube
           href: https://metube.crt.house
           description: YouTube Saver
     - Home Automation:
       - Home Assitant:
+          icon: home-assistant-alt
           href: https://ass.crt.house
           description: Home Controller
       - Zigbee2mqtt:
+          icon: zigbee2mqtt
           href: https://zigbee2mqtt.crt.house
           description: Zigbee Device Pair...er
     - Misc:
       - Pi-Hole:
+          icon: pi-hole
           href: https://pihole.crt.house
           description: Ad-Blocking DNS Server
       - Shlink:
+          icon: shlink
           href: https://shlink.crt.house
           description: URL Shortener
       - VaultWarden:
+          icon: vaultwarden
           href: https://vault.crt.house
           description: Password Manager
     - Observability:
+      - ArgoCD:
+          icon: argocd
+          href: https://argo.crt.house
+          description: Cluster Updater
       - Grafana:
+          icon: grafana
           href: https://grafana.crt.house
           description: Metric & Log Viewer
       - InfluxDB:
+          icon: influxdb
           href: https://influxdb.crt.house
           description: Metric & Log Storer
   docker.yaml: ""

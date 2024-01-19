@@ -3,6 +3,8 @@ apiVersion: apps/v1
 metadata:
   name: homepage
   namespace: homepage
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
@@ -13,19 +15,6 @@ spec:
       labels:
         app: homepage
     spec:
-      # initContainers:
-      # - name: cp
-      #   image: alpine:latest
-      #   imagePullPolicy: IfNotPresent
-      #   command:
-      #   - /bin/sh
-      #   - -c
-      #   - 'cp -v /_config/* /config/'
-      #   volumeMounts:
-      #   - name: config-cm
-      #     mountPath: /_config
-      #   - name: config
-      #     mountPath: /config
       containers:
       - name: homepage
         image: ghcr.io/gethomepage/homepage:v0.8.4
