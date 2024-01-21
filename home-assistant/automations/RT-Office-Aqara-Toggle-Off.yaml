@@ -1,0 +1,35 @@
+alias: RT Office Aquara Toggle Off
+description: When the lights are on, turn them off
+trigger:
+  - platform: device
+    domain: mqtt
+    device_id: ece33d8a02d3e229e70686ba5e36451e
+    type: click
+    subtype: single
+    discovery_id: 0x00158d000abd3637 click_single
+condition:
+  - condition: state
+    entity_id: input_boolean.ryan_s_office_desired_lights_state
+    state: "on"
+action:
+  - type: turn_off
+    device_id: a246853be7047445f55950a190698525
+    entity_id: e7619a966ebb49e839138e92abedce51
+    domain: light
+  - type: turn_off
+    device_id: dafec26d8ef2fe5452029e5c4eca4685
+    entity_id: 25eaf7822a57c9bab6064e277a875477
+    domain: light
+  - type: turn_off
+    device_id: 525ca2c6e82b423542eb4b5949886f5a
+    entity_id: f09ef306d06578cce0a5410b718125e5
+    domain: light
+  - type: turn_off
+    device_id: e2b83384489c13db454469dcba18f67e
+    entity_id: dfee3ba08fac6d83e2221ff0013cb5a2
+    domain: light
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.ryan_s_office_desired_lights_state
+    data: {}
+mode: single
