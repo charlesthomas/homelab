@@ -11,3 +11,21 @@ spec:
       targetPort: sonarr
   selector:
     app: sonarr
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: sonarr
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: sonarrdb.crt.house
+    metallb.universe.tf/address-pool: internal
+spec:
+  type: LoadBalancer
+  ports:
+    - name: postgres
+      port: 5432
+      protocol: TCP
+      targetPort: postgres
+  selector:
+    app: postgres
