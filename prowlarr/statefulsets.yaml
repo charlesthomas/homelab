@@ -21,7 +21,6 @@ spec:
         app: postgres
     spec:
       serviceAccountName: postgres
-      
       securityContext:
         fsGroup: 1001
         fsGroupChangePolicy: Always

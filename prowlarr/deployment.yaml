@@ -4,6 +4,8 @@ apiVersion: apps/v1
 metadata:
   name: prowlarr
   namespace: prowlarr
+  labels:
+    app: prowlarr
 spec:
   replicas: 1
   selector:

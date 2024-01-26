@@ -20,6 +20,8 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/hostname: prowlarrdb.crt.house
     metallb.universe.tf/address-pool: internal
+  labels:
+    app: prowlarr
 spec:
   type: LoadBalancer
   ports:

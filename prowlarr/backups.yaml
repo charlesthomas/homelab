@@ -4,6 +4,8 @@ kind: RecurringJob
 metadata:
   name: prowlarr
   namespace: longhorn
+  labels:
+    app: prowlarr
 spec:
   concurrency: 1
   cron: 0 2 * * *
