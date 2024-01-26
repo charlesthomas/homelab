@@ -8,7 +8,10 @@ commonLabels:
 resources:
   - backups.yaml
   - deployment.yaml
+  - external-secrets.yaml
   - ingress.yaml
   - namespace.yaml
   - pvc.yaml
+  - service-accounts.yaml
   - service.yaml
+  - statefulsets.yaml
