@@ -1,3 +1,4 @@
+---
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -17,6 +18,19 @@ spec:
         nameservers:
         - 192.168.1.8
       dnsPolicy: None
+      initContainers:
+      - name: cp-config
+        image: alpine:latest
+        volumeMounts:
+          - name: prowlarr-config
+            mountPath: /tmp/prowlarr-config
+          - name: prowlarr
+            mountPath: /config
+        command:
+          - cp
+          - -v
+          - /tmp/prowlarr-config/config.xml
+          - /config/config.xml
       containers:
       - name: prowlarr
         image: ghcr.io/linuxserver/prowlarr:1.11.4.4173-ls47
@@ -55,3 +69,6 @@ spec:
       - name: prowlarr
         persistentVolumeClaim:
           claimName: prowlarr
+      - name: prowlarr-config
+        secret:
+          secretName: prowlarr-config
