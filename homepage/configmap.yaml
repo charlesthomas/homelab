@@ -44,10 +44,6 @@ data:
           icon: home-assistant-alt
           href: https://ass.crt.house
           description: Home Controller
-      - Zigbee2mqtt:
-          icon: zigbee2mqtt
-          href: https://zigbee2mqtt.crt.house
-          description: Zigbee Device Pair...er
     - Misc:
       - Pi-Hole:
           icon: pi-hole
@@ -79,4 +75,5 @@ data:
   widgets.yaml: ""
   custom.css: ""
   custom.js: ""
-  kubernetes.yaml: ""
+  kubernetes.yaml: |-
+    mode: default
