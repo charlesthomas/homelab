@@ -1,0 +1,52 @@
+alias: Guest Bathroom Switch
+description: ""
+use_blueprint:
+  path: patpac9/Hue_Dimmer_Switch_Easy_Custom_Buttons.yaml
+  input:
+    controller: "0x0017880102d4519a"
+    on_press:
+      - type: turn_on
+        device_id: fa4bba6fd8a65f4809b4478988b7438d
+        entity_id: f27e48812678ac93479ec82b9d269433
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_on
+        device_id: bf83e270293f87aed81d5e4803afe4ab
+        entity_id: 569bfa5736db521ed3e996132075bc9a
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_on
+        device_id: 12911c98dfa17da0ca1355fddb794804
+        entity_id: 05bc316c1cf4b0faa6124d29cfbda14c
+        domain: light
+    off_pressed:
+      - type: turn_off
+        device_id: fa4bba6fd8a65f4809b4478988b7438d
+        entity_id: f27e48812678ac93479ec82b9d269433
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_off
+        device_id: bf83e270293f87aed81d5e4803afe4ab
+        entity_id: 569bfa5736db521ed3e996132075bc9a
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_off
+        device_id: 12911c98dfa17da0ca1355fddb794804
+        entity_id: 05bc316c1cf4b0faa6124d29cfbda14c
+        domain: light

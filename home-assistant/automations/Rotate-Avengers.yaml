@@ -1,0 +1,23 @@
+alias: Rotate Avengers
+description: ""
+trigger:
+  - platform: time
+    at: "08:00:00"
+  - platform: time
+    at: "17:00:00"
+condition: []
+action:
+  - type: turn_on
+    device_id: b32576c144d5680405b2d822a549e136
+    entity_id: 1e65d530659a5e90b55abc710dbbc044
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 6
+      milliseconds: 0
+  - type: turn_off
+    device_id: b32576c144d5680405b2d822a549e136
+    entity_id: 1e65d530659a5e90b55abc710dbbc044
+    domain: switch
+mode: single

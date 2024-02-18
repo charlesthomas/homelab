@@ -1,0 +1,23 @@
+alias: Ryan Office Switch
+description: ""
+use_blueprint:
+  path: Drafted/aqara-buttons-all-in-one-zigbee2mqtt.yaml
+  input:
+    action_sensor: sensor.ryan_s_office_aqara_click
+    single_action:
+      - type: toggle
+        device_id: a246853be7047445f55950a190698525
+        entity_id: e7619a966ebb49e839138e92abedce51
+        domain: light
+      - type: toggle
+        device_id: dafec26d8ef2fe5452029e5c4eca4685
+        entity_id: 25eaf7822a57c9bab6064e277a875477
+        domain: light
+      - type: toggle
+        device_id: 525ca2c6e82b423542eb4b5949886f5a
+        entity_id: f09ef306d06578cce0a5410b718125e5
+        domain: light
+      - type: toggle
+        device_id: e2b83384489c13db454469dcba18f67e
+        entity_id: dfee3ba08fac6d83e2221ff0013cb5a2
+        domain: light

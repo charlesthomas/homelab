@@ -1,0 +1,70 @@
+alias: Kitchen Switch
+description: ""
+use_blueprint:
+  path: patpac9/Hue_Dimmer_Switch_Easy_Custom_Buttons.yaml
+  input:
+    controller: "0x001788010218dc3e"
+    on_press:
+      - type: turn_on
+        device_id: e175752c39f5a406d86f00685b5ac21b
+        entity_id: dbb26e005be5a844a00669715f1714b1
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_on
+        device_id: 19aeaeab72c87aadfd3907db573e3125
+        entity_id: 3b7d7f7d5e23e24e37ad2887f54b71d6
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_on
+        device_id: 79446fb4a4f991f93790b7e27ea0eb45
+        entity_id: 52ffb7b16490cb3c54caa59c7ab5872a
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_on
+        device_id: ac1f9c26c24b209c4140949fb6a79307
+        entity_id: 100e9870e8decdc41d77e44f102c4742
+        domain: light
+    off_pressed:
+      - type: turn_off
+        device_id: e175752c39f5a406d86f00685b5ac21b
+        entity_id: dbb26e005be5a844a00669715f1714b1
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_off
+        device_id: 19aeaeab72c87aadfd3907db573e3125
+        entity_id: 3b7d7f7d5e23e24e37ad2887f54b71d6
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_off
+        device_id: 79446fb4a4f991f93790b7e27ea0eb45
+        entity_id: 52ffb7b16490cb3c54caa59c7ab5872a
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_off
+        device_id: ac1f9c26c24b209c4140949fb6a79307
+        entity_id: 100e9870e8decdc41d77e44f102c4742
+        domain: light

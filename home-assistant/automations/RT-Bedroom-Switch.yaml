@@ -1,0 +1,16 @@
+alias: Ryan BR Switch
+description: ""
+use_blueprint:
+  path: Drafted/aqara-buttons-all-in-one-zigbee2mqtt.yaml
+  input:
+    action_sensor: sensor.ryan_s_bedroom_aqara_click
+    single_action:
+      - type: toggle
+        device_id: da5ccd6c274cb494855e3ba9297fcd9a
+        entity_id: c034246912e3b649657d8c1b6055f745
+        domain: light
+      - type: toggle
+        device_id: 558582e047f320a6de70f930dd61f8df
+        entity_id: 1c27f2ad7006f56bfe2f57be7492ef72
+        domain: light
+    hold_action: []

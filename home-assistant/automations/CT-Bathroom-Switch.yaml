@@ -1,0 +1,52 @@
+alias: CT Bathroom Switch
+description: ""
+use_blueprint:
+  path: patpac9/Hue_Dimmer_Switch_Easy_Custom_Buttons.yaml
+  input:
+    controller: "0x001788010c29e807"
+    on_press:
+      - type: turn_on
+        device_id: cf13b868bb8a1a584e068d0d53696471
+        entity_id: d7ab22d757c625e844ddd57ed7844b7a
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_on
+        device_id: 05db9b5d8b33e6d69d61e0c3f10097d2
+        entity_id: cdf1e1e3d57d631d90df24dd66f10f62
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_on
+        device_id: 4251f1ff975d7308138c51e433cb3c20
+        entity_id: 1e22633599370136c48f4612f13cbf74
+        domain: light
+    off_pressed:
+      - type: turn_off
+        device_id: cf13b868bb8a1a584e068d0d53696471
+        entity_id: d7ab22d757c625e844ddd57ed7844b7a
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_off
+        device_id: 05db9b5d8b33e6d69d61e0c3f10097d2
+        entity_id: cdf1e1e3d57d631d90df24dd66f10f62
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 25
+      - type: turn_off
+        device_id: 4251f1ff975d7308138c51e433cb3c20
+        entity_id: 1e22633599370136c48f4612f13cbf74
+        domain: light
