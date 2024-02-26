@@ -5,10 +5,7 @@ image:
 
 service:
   main:
-    type: LoadBalancer
-    annotations:
-      metallb.universe.tf/address-pool: internal
-      external-dns.alpha.kubernetes.io/hostname: mosquitto.crt.house
+    type: ClusterIP
 
   websockets:
     enabled: false
