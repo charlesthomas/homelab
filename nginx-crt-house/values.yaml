@@ -67,6 +67,7 @@ controller:
     type: LoadBalancer
     annotations:
       metallb.universe.tf/address-pool: internal
+      metallb.universe.tf/loadBalancerIPs: 192.168.1.41
 
     ## The IP ranges (CIDR) that are allowed to access the load balancer. Requires controller.service.type set to LoadBalancer. The cloud provider must support this feature.
     loadBalancerSourceRanges: []
@@ -116,4 +117,4 @@ prometheus:
     ## A list of endpoints allowed as part of this ServiceMonitor.
     ## Matches on the name of a Service port.
     endpoints:
-     - port: prometheus
+      - port: prometheus
