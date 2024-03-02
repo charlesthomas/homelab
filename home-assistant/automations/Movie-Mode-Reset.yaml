@@ -1,4 +1,4 @@
-alias: Movie-Mode-Reset
+alias: Movie Mode Reset
 description: ""
 trigger:
   - platform: time

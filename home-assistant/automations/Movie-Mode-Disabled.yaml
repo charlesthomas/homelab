@@ -6,7 +6,12 @@ trigger:
       - input_boolean.movie_mode
     from: "on"
     to: "off"
-condition: []
+condition:
+  - condition: device
+    type: is_on
+    device_id: 3c59d3807cd1590efa9ae3e4fa50005e
+    entity_id: a9685fb2644a46c987ec327cdcf5cda0
+    domain: light
 action:
   - type: turn_on
     device_id: 3c59d3807cd1590efa9ae3e4fa50005e
