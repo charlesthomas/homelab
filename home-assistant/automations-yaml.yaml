@@ -6,6 +6,27 @@ metadata:
   namespace: home-assistant
 data:
   automations.yaml: |
+    - alias: Coffee Pot
+      description: ""
+      trigger:
+        - platform: time
+          at: "06:15:00"
+      condition: []
+      action:
+        - type: turn_on
+          device_id: 751258a83b71dc6d1b8102dd75aedd3e
+          entity_id: bc85422efd980d712fef050347614f1d
+          domain: switch
+        - delay:
+            hours: 0
+            minutes: 10
+            seconds: 0
+            milliseconds: 0
+        - type: turn_off
+          device_id: 751258a83b71dc6d1b8102dd75aedd3e
+          entity_id: bc85422efd980d712fef050347614f1d
+          domain: switch
+      mode: single
     - alias: CT Bath Motion On
       description: ""
       trigger:
@@ -110,27 +131,6 @@ data:
               device_id: 86947dc3993b59bc2a428d4fd8b90fde
               entity_id: a7b7086e644289db071ea71a9a9fc2a2
               domain: light
-    - alias: Coffee Pot
-      description: ""
-      trigger:
-        - platform: time
-          at: "06:15:00"
-      condition: []
-      action:
-        - type: turn_on
-          device_id: 751258a83b71dc6d1b8102dd75aedd3e
-          entity_id: bc85422efd980d712fef050347614f1d
-          domain: switch
-        - delay:
-            hours: 0
-            minutes: 10
-            seconds: 0
-            milliseconds: 0
-        - type: turn_off
-          device_id: 751258a83b71dc6d1b8102dd75aedd3e
-          entity_id: bc85422efd980d712fef050347614f1d
-          domain: switch
-      mode: single
     - alias: Dining Room Switch
       description: ""
       use_blueprint:
@@ -354,6 +354,7 @@ data:
               device_id: 3c59d3807cd1590efa9ae3e4fa50005e
               entity_id: a9685fb2644a46c987ec327cdcf5cda0
               domain: light
+              brightness_pct: 100
             - delay:
                 hours: 0
                 minutes: 0
@@ -363,6 +364,7 @@ data:
               device_id: 2f15920001aa4cf4526dcd2c4ae1d0ba
               entity_id: 8e4421aade2af8343bd3d371ba88a936
               domain: light
+              brightness_pct: 100
             - delay:
                 hours: 0
                 minutes: 0
@@ -372,6 +374,7 @@ data:
               device_id: 1f109e1760410aa39a48145d1b471736
               entity_id: 3d4ab3fe3cf9d4eb834772c652a3d8c7
               domain: light
+              brightness_pct: 100
             - delay:
                 hours: 0
                 minutes: 0
@@ -381,6 +384,7 @@ data:
               device_id: 675b724b9e45751d6a48f648fd0514d1
               entity_id: d8d7623052a3f9bbfbc870c9d04d3655
               domain: light
+              brightness_pct: 100
           off_pressed:
             - type: turn_off
               device_id: 3c59d3807cd1590efa9ae3e4fa50005e
@@ -421,7 +425,12 @@ data:
             - input_boolean.movie_mode
           from: "on"
           to: "off"
-      condition: []
+      condition:
+        - condition: device
+          type: is_on
+          device_id: 3c59d3807cd1590efa9ae3e4fa50005e
+          entity_id: a9685fb2644a46c987ec327cdcf5cda0
+          domain: light
       action:
         - type: turn_on
           device_id: 3c59d3807cd1590efa9ae3e4fa50005e
@@ -551,7 +560,7 @@ data:
           domain: light
           brightness_pct: 35
       mode: single
-    - alias: Movie-Mode-Reset
+    - alias: Movie Mode Reset
       description: ""
       trigger:
         - platform: time
@@ -562,6 +571,29 @@ data:
           target:
             entity_id: input_boolean.movie_mode
           data: {}
+      mode: single
+    - alias: Rotate Avengers
+      description: ""
+      trigger:
+        - platform: time
+          at: "08:00:00"
+        - platform: time
+          at: "17:00:00"
+      condition: []
+      action:
+        - type: turn_on
+          device_id: b32576c144d5680405b2d822a549e136
+          entity_id: 1e65d530659a5e90b55abc710dbbc044
+          domain: switch
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 6
+            milliseconds: 0
+        - type: turn_off
+          device_id: b32576c144d5680405b2d822a549e136
+          entity_id: 1e65d530659a5e90b55abc710dbbc044
+          domain: switch
       mode: single
     - alias: RT Bedroom Aquara Force Off
       description: When only some of the lights are off, force them all off
@@ -843,26 +875,3 @@ data:
               device_id: e2b83384489c13db454469dcba18f67e
               entity_id: dfee3ba08fac6d83e2221ff0013cb5a2
               domain: light
-    - alias: Rotate Avengers
-      description: ""
-      trigger:
-        - platform: time
-          at: "08:00:00"
-        - platform: time
-          at: "17:00:00"
-      condition: []
-      action:
-        - type: turn_on
-          device_id: b32576c144d5680405b2d822a549e136
-          entity_id: 1e65d530659a5e90b55abc710dbbc044
-          domain: switch
-        - delay:
-            hours: 0
-            minutes: 0
-            seconds: 6
-            milliseconds: 0
-        - type: turn_off
-          device_id: b32576c144d5680405b2d822a549e136
-          entity_id: 1e65d530659a5e90b55abc710dbbc044
-          domain: switch
-      mode: single
