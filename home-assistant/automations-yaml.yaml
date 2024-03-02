@@ -1,0 +1,781 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: automations-yaml
+  namespace: home-assistant
+data:
+  automations.yaml: |
+    - alias: Coffee Pot
+      description: ""
+      trigger:
+        - platform: time
+          at: "06:15:00"
+      condition: []
+      action:
+        - type: turn_on
+          device_id: 751258a83b71dc6d1b8102dd75aedd3e
+          entity_id: bc85422efd980d712fef050347614f1d
+          domain: switch
+        - delay:
+            hours: 0
+            minutes: 10
+            seconds: 0
+            milliseconds: 0
+        - type: turn_off
+          device_id: 751258a83b71dc6d1b8102dd75aedd3e
+          entity_id: bc85422efd980d712fef050347614f1d
+          domain: switch
+      mode: single
+    - alias: CT Bath Motion On
+      description: ""
+      trigger:
+        - type: motion
+          platform: device
+          device_id: b1cf547c46b0b9fa17211b2685d5e5cf
+          entity_id: 40e0cb4c514ef2e80bd49f6cd905981b
+          domain: binary_sensor
+      action:
+        - type: turn_on
+          device_id: cf13b868bb8a1a584e068d0d53696471
+          entity_id: d7ab22d757c625e844ddd57ed7844b7a
+          domain: light
+        - type: turn_on
+          device_id: 4251f1ff975d7308138c51e433cb3c20
+          entity_id: 1e22633599370136c48f4612f13cbf74
+          domain: light
+        - type: turn_on
+          device_id: 05db9b5d8b33e6d69d61e0c3f10097d2
+          entity_id: cdf1e1e3d57d631d90df24dd66f10f62
+          domain: light
+      mode: single
+    - alias: CT Bath Switch Off
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: ebbf7666850a5a664a9675d49cc270b7
+          type: action
+          subtype: off_press_release
+          discovery_id: 0x001788010c29e807 action_off_press_release
+        - platform: device
+          domain: mqtt
+          device_id: ebbf7666850a5a664a9675d49cc270b7
+          type: action
+          subtype: off_press
+          discovery_id: 0x001788010c29e807 action_off_press
+      condition: []
+      action:
+        - type: turn_off
+          device_id: 05db9b5d8b33e6d69d61e0c3f10097d2
+          entity_id: cdf1e1e3d57d631d90df24dd66f10f62
+          domain: light
+        - type: turn_off
+          device_id: cf13b868bb8a1a584e068d0d53696471
+          entity_id: d7ab22d757c625e844ddd57ed7844b7a
+          domain: light
+        - type: turn_off
+          device_id: 4251f1ff975d7308138c51e433cb3c20
+          entity_id: 1e22633599370136c48f4612f13cbf74
+          domain: light
+      mode: single
+    - alias: CT Bath Switch On
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: ebbf7666850a5a664a9675d49cc270b7
+          type: action
+          subtype: on_press
+          discovery_id: 0x001788010c29e807 action_on_press
+        - platform: device
+          domain: mqtt
+          device_id: ebbf7666850a5a664a9675d49cc270b7
+          type: action
+          subtype: on_press_release
+          discovery_id: 0x001788010c29e807 action_on_press_release
+      condition: []
+      action:
+        - type: turn_on
+          device_id: 05db9b5d8b33e6d69d61e0c3f10097d2
+          entity_id: cdf1e1e3d57d631d90df24dd66f10f62
+          domain: light
+        - type: turn_on
+          device_id: 4251f1ff975d7308138c51e433cb3c20
+          entity_id: 1e22633599370136c48f4612f13cbf74
+          domain: light
+        - type: turn_on
+          device_id: cf13b868bb8a1a584e068d0d53696471
+          entity_id: d7ab22d757c625e844ddd57ed7844b7a
+          domain: light
+      mode: single
+    - alias: CT Bedroom Motion On
+      description: ""
+      trigger:
+        - type: motion
+          platform: device
+          device_id: a6e4f3acb2097d1c744e38f6106b20b3
+          entity_id: 5a1b3872436c4a2fa1624645f72353de
+          domain: binary_sensor
+      action:
+        - type: turn_on
+          device_id: 86947dc3993b59bc2a428d4fd8b90fde
+          entity_id: a7b7086e644289db071ea71a9a9fc2a2
+          domain: light
+      mode: single
+    - alias: CT Bedroom Switch Off
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: 56f9d0be4d86c1025c9e9b971fdcbcf3
+          type: action
+          subtype: off_press
+          discovery_id: 0x001788010b7457e4 action_off_press
+        - platform: device
+          domain: mqtt
+          device_id: 56f9d0be4d86c1025c9e9b971fdcbcf3
+          type: action
+          subtype: off_press_release
+          discovery_id: 0x001788010b7457e4 action_off_press_release
+      condition: []
+      action:
+        - type: turn_off
+          device_id: 86947dc3993b59bc2a428d4fd8b90fde
+          entity_id: a7b7086e644289db071ea71a9a9fc2a2
+          domain: light
+      mode: single
+    - alias: CT Bedroom Switch On
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: 56f9d0be4d86c1025c9e9b971fdcbcf3
+          type: action
+          subtype: on_press
+          discovery_id: 0x001788010b7457e4 action_on_press
+        - platform: device
+          domain: mqtt
+          device_id: 56f9d0be4d86c1025c9e9b971fdcbcf3
+          type: action
+          subtype: on_press_release
+          discovery_id: 0x001788010b7457e4 action_on_press_release
+      condition: []
+      action:
+        - type: turn_on
+          device_id: 86947dc3993b59bc2a428d4fd8b90fde
+          entity_id: a7b7086e644289db071ea71a9a9fc2a2
+          domain: light
+      mode: single
+    - alias: Dining Room Switch Off
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: e4391689f3443ccdb144e4f587fc16cf
+          type: action
+          subtype: off-press
+          discovery_id: 0x0017880102d453c2 action_off-press
+      action:
+        - type: turn_off
+          device_id: 4df97cb5b2ece91a5e2b09253ac41b4e
+          entity_id: 678b7118dcbddcc00d3a57157dce9d35
+          domain: light
+        - type: turn_off
+          device_id: a91af911336fa63c9268f2902c3d7261
+          entity_id: f779c39c1f9e6173671c62bc5e595038
+          domain: light
+        - type: turn_off
+          device_id: 9feda7367d430176870108177b24a2d1
+          entity_id: 5072e1d9b66d72f62b5ec5e741c041b4
+          domain: light
+        - type: turn_off
+          device_id: b13250fa377c427c077d2d3205345c2c
+          entity_id: 314a286fbebccfa32ba345fd2876d1a1
+          domain: light
+        - type: turn_off
+          device_id: a08b92a07b01c261fc0ffe19f1ec5529
+          entity_id: 97e7f9fd9c703c64040729e4af5bc52d
+          domain: light
+      mode: single
+    - alias: Dining Room Switch On
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: e4391689f3443ccdb144e4f587fc16cf
+          type: action
+          subtype: on-press
+          discovery_id: 0x0017880102d453c2 action_on-press
+      condition: []
+      action:
+        - type: turn_on
+          device_id: 4df97cb5b2ece91a5e2b09253ac41b4e
+          entity_id: 678b7118dcbddcc00d3a57157dce9d35
+          domain: light
+        - type: turn_on
+          device_id: a91af911336fa63c9268f2902c3d7261
+          entity_id: f779c39c1f9e6173671c62bc5e595038
+          domain: light
+        - type: turn_on
+          device_id: 9feda7367d430176870108177b24a2d1
+          entity_id: 5072e1d9b66d72f62b5ec5e741c041b4
+          domain: light
+        - type: turn_on
+          device_id: b13250fa377c427c077d2d3205345c2c
+          entity_id: 314a286fbebccfa32ba345fd2876d1a1
+          domain: light
+        - type: turn_on
+          device_id: a08b92a07b01c261fc0ffe19f1ec5529
+          entity_id: 97e7f9fd9c703c64040729e4af5bc52d
+          domain: light
+      mode: single
+    - alias: Guest Bathroom Switch Off
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: aa8bd2377193b7d83ff6f4f95aa26123
+          type: action
+          subtype: off-press
+          discovery_id: 0x0017880102d4519a action_off-press
+      condition: []
+      action:
+        - type: turn_off
+          device_id: bf83e270293f87aed81d5e4803afe4ab
+          entity_id: 569bfa5736db521ed3e996132075bc9a
+          domain: light
+        - type: turn_off
+          device_id: fa4bba6fd8a65f4809b4478988b7438d
+          entity_id: f27e48812678ac93479ec82b9d269433
+          domain: light
+        - type: turn_off
+          device_id: 12911c98dfa17da0ca1355fddb794804
+          entity_id: 05bc316c1cf4b0faa6124d29cfbda14c
+          domain: light
+      mode: single
+    - alias: Guest Bathroom Switch On
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: aa8bd2377193b7d83ff6f4f95aa26123
+          type: action
+          subtype: on-press
+          discovery_id: 0x0017880102d4519a action_on-press
+      condition: []
+      action:
+        - type: turn_on
+          device_id: bf83e270293f87aed81d5e4803afe4ab
+          entity_id: 569bfa5736db521ed3e996132075bc9a
+          domain: light
+        - type: turn_on
+          device_id: fa4bba6fd8a65f4809b4478988b7438d
+          entity_id: f27e48812678ac93479ec82b9d269433
+          domain: light
+        - type: turn_on
+          device_id: 12911c98dfa17da0ca1355fddb794804
+          entity_id: 05bc316c1cf4b0faa6124d29cfbda14c
+          domain: light
+      mode: single
+    - alias: Kitchen Switch Off
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: c543dee2d12a6249faf1d615ecbc0a77
+          type: action
+          subtype: off-press
+          discovery_id: 0x001788010218dc3e action_off-press
+      condition: []
+      action:
+        - type: turn_off
+          device_id: e175752c39f5a406d86f00685b5ac21b
+          entity_id: dbb26e005be5a844a00669715f1714b1
+          domain: light
+        - type: turn_off
+          device_id: 19aeaeab72c87aadfd3907db573e3125
+          entity_id: 3b7d7f7d5e23e24e37ad2887f54b71d6
+          domain: light
+        - type: turn_off
+          device_id: 79446fb4a4f991f93790b7e27ea0eb45
+          entity_id: 52ffb7b16490cb3c54caa59c7ab5872a
+          domain: light
+        - type: turn_off
+          device_id: ac1f9c26c24b209c4140949fb6a79307
+          entity_id: 100e9870e8decdc41d77e44f102c4742
+          domain: light
+      mode: single
+    - alias: Kitchen Switch On
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: c543dee2d12a6249faf1d615ecbc0a77
+          type: action
+          subtype: on-press
+          discovery_id: 0x001788010218dc3e action_on-press
+      action:
+        - type: turn_on
+          device_id: e175752c39f5a406d86f00685b5ac21b
+          entity_id: dbb26e005be5a844a00669715f1714b1
+          domain: light
+        - type: turn_on
+          device_id: 19aeaeab72c87aadfd3907db573e3125
+          entity_id: 3b7d7f7d5e23e24e37ad2887f54b71d6
+          domain: light
+        - type: turn_on
+          device_id: 79446fb4a4f991f93790b7e27ea0eb45
+          entity_id: 52ffb7b16490cb3c54caa59c7ab5872a
+          domain: light
+        - type: turn_on
+          device_id: ac1f9c26c24b209c4140949fb6a79307
+          entity_id: 100e9870e8decdc41d77e44f102c4742
+          domain: light
+      mode: single
+    - alias: Movie Mode Disabled
+      description: ""
+      trigger:
+        - platform: state
+          entity_id:
+            - input_boolean.movie_mode
+          from: "on"
+          to: "off"
+      condition: []
+      action:
+        - type: turn_on
+          device_id: 3c59d3807cd1590efa9ae3e4fa50005e
+          entity_id: a9685fb2644a46c987ec327cdcf5cda0
+          domain: light
+          brightness_pct: 100
+        - type: turn_on
+          device_id: 2f15920001aa4cf4526dcd2c4ae1d0ba
+          entity_id: 8e4421aade2af8343bd3d371ba88a936
+          domain: light
+          brightness_pct: 100
+        - type: turn_on
+          device_id: 1f109e1760410aa39a48145d1b471736
+          entity_id: 3d4ab3fe3cf9d4eb834772c652a3d8c7
+          domain: light
+          brightness_pct: 100
+        - type: turn_on
+          device_id: 675b724b9e45751d6a48f648fd0514d1
+          entity_id: d8d7623052a3f9bbfbc870c9d04d3655
+          domain: light
+          brightness_pct: 100
+      mode: single
+    - alias: Movie Mode Enabled
+      description: ""
+      trigger:
+        - platform: state
+          entity_id:
+            - input_boolean.movie_mode
+          from: "off"
+          to: "on"
+      condition: []
+      action:
+        - type: turn_on
+          device_id: 3c59d3807cd1590efa9ae3e4fa50005e
+          entity_id: a9685fb2644a46c987ec327cdcf5cda0
+          domain: light
+          brightness_pct: 70
+        - type: turn_on
+          device_id: 2f15920001aa4cf4526dcd2c4ae1d0ba
+          entity_id: 8e4421aade2af8343bd3d371ba88a936
+          domain: light
+          brightness_pct: 70
+        - type: turn_on
+          device_id: 1f109e1760410aa39a48145d1b471736
+          entity_id: 3d4ab3fe3cf9d4eb834772c652a3d8c7
+          domain: light
+          brightness_pct: 70
+        - type: turn_on
+          device_id: 675b724b9e45751d6a48f648fd0514d1
+          entity_id: d8d7623052a3f9bbfbc870c9d04d3655
+          domain: light
+          brightness_pct: 70
+        - type: turn_on
+          device_id: bdf7c3cd7590d89e31f8eb54753a6de6
+          entity_id: c24f570a5d97fec3e38c53dcc3a8e248
+          domain: switch
+      mode: single
+    - alias: Movie Mode Pause
+      description: ""
+      trigger:
+        - platform: device
+          device_id: 9740bbcab565039940bba000fd826456
+          domain: media_player
+          entity_id: 82ef8ecd276eac8b6467aab84b76b095
+          type: paused
+          for:
+            hours: 0
+            minutes: 0
+            seconds: 10
+      condition:
+        - condition: state
+          entity_id: input_boolean.movie_mode
+          state: "on"
+      action:
+        - type: turn_on
+          device_id: 3c59d3807cd1590efa9ae3e4fa50005e
+          entity_id: a9685fb2644a46c987ec327cdcf5cda0
+          domain: light
+          brightness_pct: 70
+        - type: turn_on
+          device_id: 2f15920001aa4cf4526dcd2c4ae1d0ba
+          entity_id: 8e4421aade2af8343bd3d371ba88a936
+          domain: light
+          brightness_pct: 70
+        - type: turn_on
+          device_id: 1f109e1760410aa39a48145d1b471736
+          entity_id: 3d4ab3fe3cf9d4eb834772c652a3d8c7
+          domain: light
+          brightness_pct: 70
+        - type: turn_on
+          device_id: 675b724b9e45751d6a48f648fd0514d1
+          entity_id: d8d7623052a3f9bbfbc870c9d04d3655
+          domain: light
+          brightness_pct: 70
+      mode: single
+    - alias: Movie Mode Playing
+      description: ""
+      trigger:
+        - platform: device
+          device_id: 9740bbcab565039940bba000fd826456
+          domain: media_player
+          entity_id: 82ef8ecd276eac8b6467aab84b76b095
+          type: playing
+      condition:
+        - condition: state
+          entity_id: input_boolean.movie_mode
+          state: "on"
+      action:
+        - type: turn_on
+          device_id: 3c59d3807cd1590efa9ae3e4fa50005e
+          entity_id: a9685fb2644a46c987ec327cdcf5cda0
+          domain: light
+          brightness_pct: 35
+        - type: turn_on
+          device_id: 2f15920001aa4cf4526dcd2c4ae1d0ba
+          entity_id: 8e4421aade2af8343bd3d371ba88a936
+          domain: light
+          brightness_pct: 35
+        - type: turn_on
+          device_id: 1f109e1760410aa39a48145d1b471736
+          entity_id: 3d4ab3fe3cf9d4eb834772c652a3d8c7
+          domain: light
+          brightness_pct: 35
+        - type: turn_on
+          device_id: 675b724b9e45751d6a48f648fd0514d1
+          entity_id: d8d7623052a3f9bbfbc870c9d04d3655
+          domain: light
+          brightness_pct: 35
+      mode: single
+    - alias: Movie-Mode-Reset
+      description: ""
+      trigger:
+        - platform: time
+          at: "05:00:00"
+      condition: []
+      action:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.movie_mode
+          data: {}
+      mode: single
+    - alias: RT Bedroom Aquara Force Off
+      description: When only some of the lights are off, force them all off
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: d93b5dc09f1b98a5c9cf113aad9b74bd
+          type: action
+          subtype: hold
+          discovery_id: 0x00158d000abd3612 action_hold
+      condition:
+        - condition: state
+          entity_id: input_boolean.ryan_s_bedroom_desired_lights_state
+          state: "off"
+      action:
+        - type: turn_off
+          device_id: 558582e047f320a6de70f930dd61f8df
+          entity_id: 1c27f2ad7006f56bfe2f57be7492ef72
+          domain: light
+        - type: turn_off
+          device_id: da5ccd6c274cb494855e3ba9297fcd9a
+          entity_id: c034246912e3b649657d8c1b6055f745
+          domain: light
+      mode: single
+    - alias: RT Bedroom Aquara Force On
+      description: When only some of the lights are on, force them all on
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: d93b5dc09f1b98a5c9cf113aad9b74bd
+          type: action
+          subtype: hold
+          discovery_id: 0x00158d000abd3612 action_hold
+      condition:
+        - condition: state
+          entity_id: input_boolean.ryan_s_bedroom_desired_lights_state
+          state: "on"
+      action:
+        - type: turn_on
+          device_id: 558582e047f320a6de70f930dd61f8df
+          entity_id: 1c27f2ad7006f56bfe2f57be7492ef72
+          domain: light
+        - type: turn_on
+          device_id: da5ccd6c274cb494855e3ba9297fcd9a
+          entity_id: c034246912e3b649657d8c1b6055f745
+          domain: light
+      mode: single
+    - alias: RT Bedroom Aquara Toggle Off
+      description: When the lights are on, turn them off
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: d93b5dc09f1b98a5c9cf113aad9b74bd
+          type: action
+          subtype: single
+          discovery_id: 0x00158d000abd3612 action_single
+      condition:
+        - condition: state
+          entity_id: input_boolean.ryan_s_bedroom_desired_lights_state
+          state: "on"
+      action:
+        - type: turn_off
+          device_id: da5ccd6c274cb494855e3ba9297fcd9a
+          entity_id: c034246912e3b649657d8c1b6055f745
+          domain: light
+        - type: turn_off
+          device_id: 558582e047f320a6de70f930dd61f8df
+          entity_id: 1c27f2ad7006f56bfe2f57be7492ef72
+          domain: light
+        - service: input_boolean.turn_off
+          target:
+            entity_id:
+              - input_boolean.ryan_s_bedroom_desired_lights_state
+            device_id: []
+            area_id: []
+          data: {}
+      mode: single
+    - alias: RT Bedroom Aquara Toggle On
+      description: When the lights are off, turn them on
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: d93b5dc09f1b98a5c9cf113aad9b74bd
+          type: action
+          subtype: single
+          discovery_id: 0x00158d000abd3612 action_single
+      condition:
+        - condition: state
+          entity_id: input_boolean.ryan_s_bedroom_desired_lights_state
+          state: "off"
+      action:
+        - type: turn_on
+          device_id: da5ccd6c274cb494855e3ba9297fcd9a
+          entity_id: c034246912e3b649657d8c1b6055f745
+          domain: light
+        - type: turn_on
+          device_id: 558582e047f320a6de70f930dd61f8df
+          entity_id: 1c27f2ad7006f56bfe2f57be7492ef72
+          domain: light
+        - service: input_boolean.turn_on
+          target:
+            entity_id:
+              - input_boolean.ryan_s_bedroom_desired_lights_state
+            device_id: []
+            area_id: []
+          data: {}
+      mode: single
+    - alias: RT Office Aquara Force Off
+      description: When only some of the lights are off, force them all off
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: ece33d8a02d3e229e70686ba5e36451e
+          type: action
+          subtype: hold
+          discovery_id: 0x00158d000abd3637 action_hold
+      condition:
+        - condition: state
+          entity_id: input_boolean.ryan_s_office_desired_lights_state
+          state: "off"
+      action:
+        - type: turn_off
+          device_id: a246853be7047445f55950a190698525
+          entity_id: e7619a966ebb49e839138e92abedce51
+          domain: light
+        - type: turn_off
+          device_id: dafec26d8ef2fe5452029e5c4eca4685
+          entity_id: 25eaf7822a57c9bab6064e277a875477
+          domain: light
+        - type: turn_off
+          device_id: 525ca2c6e82b423542eb4b5949886f5a
+          entity_id: f09ef306d06578cce0a5410b718125e5
+          domain: light
+        - type: turn_off
+          device_id: e2b83384489c13db454469dcba18f67e
+          entity_id: dfee3ba08fac6d83e2221ff0013cb5a2
+          domain: light
+      mode: single
+    - alias: RT Office Aquara Force On
+      description: When only some of the lights are on, force them all on
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: ece33d8a02d3e229e70686ba5e36451e
+          type: action
+          subtype: hold
+          discovery_id: 0x00158d000abd3637 action_hold
+      condition:
+        - condition: state
+          entity_id: input_boolean.ryan_s_office_desired_lights_state
+          state: "on"
+      action:
+        - type: turn_on
+          device_id: a246853be7047445f55950a190698525
+          entity_id: e7619a966ebb49e839138e92abedce51
+          domain: light
+        - type: turn_on
+          device_id: dafec26d8ef2fe5452029e5c4eca4685
+          entity_id: 25eaf7822a57c9bab6064e277a875477
+          domain: light
+        - type: turn_on
+          device_id: 525ca2c6e82b423542eb4b5949886f5a
+          entity_id: f09ef306d06578cce0a5410b718125e5
+          domain: light
+        - type: turn_on
+          device_id: e2b83384489c13db454469dcba18f67e
+          entity_id: dfee3ba08fac6d83e2221ff0013cb5a2
+          domain: light
+      mode: single
+    - alias: RT Office Aquara Toggle Off
+      description: When the lights are on, turn them off
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: ece33d8a02d3e229e70686ba5e36451e
+          type: click
+          subtype: single
+          discovery_id: 0x00158d000abd3637 click_single
+      condition:
+        - condition: state
+          entity_id: input_boolean.ryan_s_office_desired_lights_state
+          state: "on"
+      action:
+        - type: turn_off
+          device_id: a246853be7047445f55950a190698525
+          entity_id: e7619a966ebb49e839138e92abedce51
+          domain: light
+        - type: turn_off
+          device_id: dafec26d8ef2fe5452029e5c4eca4685
+          entity_id: 25eaf7822a57c9bab6064e277a875477
+          domain: light
+        - type: turn_off
+          device_id: 525ca2c6e82b423542eb4b5949886f5a
+          entity_id: f09ef306d06578cce0a5410b718125e5
+          domain: light
+        - type: turn_off
+          device_id: e2b83384489c13db454469dcba18f67e
+          entity_id: dfee3ba08fac6d83e2221ff0013cb5a2
+          domain: light
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.ryan_s_office_desired_lights_state
+          data: {}
+      mode: single
+    - alias: RT Office Aquara Toggle On
+      description: When the lights are off, turn them on
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: ece33d8a02d3e229e70686ba5e36451e
+          type: click
+          subtype: single
+          discovery_id: 0x00158d000abd3637 click_single
+      condition:
+        - condition: state
+          entity_id: input_boolean.ryan_s_office_desired_lights_state
+          state: "off"
+      action:
+        - type: turn_on
+          device_id: a246853be7047445f55950a190698525
+          entity_id: e7619a966ebb49e839138e92abedce51
+          domain: light
+        - type: turn_on
+          device_id: dafec26d8ef2fe5452029e5c4eca4685
+          entity_id: 25eaf7822a57c9bab6064e277a875477
+          domain: light
+        - type: turn_on
+          device_id: 525ca2c6e82b423542eb4b5949886f5a
+          entity_id: f09ef306d06578cce0a5410b718125e5
+          domain: light
+        - type: turn_on
+          device_id: e2b83384489c13db454469dcba18f67e
+          entity_id: dfee3ba08fac6d83e2221ff0013cb5a2
+          domain: light
+        - service: input_boolean.turn_on
+          target:
+            entity_id:
+              - input_boolean.ryan_s_office_desired_lights_state
+            device_id: []
+            area_id: []
+          data: {}
+      mode: single
+    - alias: TV Lamps Switch Off
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: 3a87ce595d2471e0c8b1189ea76aabfd
+          type: action
+          subtype: off-press
+          discovery_id: 0x00178801080b228e action_off-press
+      condition: []
+      action:
+        - type: turn_off
+          device_id: 3c59d3807cd1590efa9ae3e4fa50005e
+          entity_id: a9685fb2644a46c987ec327cdcf5cda0
+          domain: light
+        - type: turn_off
+          device_id: 2f15920001aa4cf4526dcd2c4ae1d0ba
+          entity_id: 8e4421aade2af8343bd3d371ba88a936
+          domain: light
+        - type: turn_off
+          device_id: 1f109e1760410aa39a48145d1b471736
+          entity_id: 3d4ab3fe3cf9d4eb834772c652a3d8c7
+          domain: light
+        - type: turn_off
+          device_id: 675b724b9e45751d6a48f648fd0514d1
+          entity_id: d8d7623052a3f9bbfbc870c9d04d3655
+          domain: light
+      mode: single
+    - alias: TV Lamps Switch On
+      description: ""
+      trigger:
+        - platform: device
+          domain: mqtt
+          device_id: 3a87ce595d2471e0c8b1189ea76aabfd
+          type: action
+          subtype: on-press
+          discovery_id: 0x00178801080b228e action_on-press
+      action:
+        - type: turn_on
+          device_id: 3c59d3807cd1590efa9ae3e4fa50005e
+          entity_id: a9685fb2644a46c987ec327cdcf5cda0
+          domain: light
+        - type: turn_on
+          device_id: 2f15920001aa4cf4526dcd2c4ae1d0ba
+          entity_id: 8e4421aade2af8343bd3d371ba88a936
+          domain: light
+        - type: turn_on
+          device_id: 1f109e1760410aa39a48145d1b471736
+          entity_id: 3d4ab3fe3cf9d4eb834772c652a3d8c7
+          domain: light
+        - type: turn_on
+          device_id: 675b724b9e45751d6a48f648fd0514d1
+          entity_id: d8d7623052a3f9bbfbc870c9d04d3655
+          domain: light
+      mode: single

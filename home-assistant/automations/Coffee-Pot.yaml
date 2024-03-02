@@ -1,0 +1,21 @@
+alias: Coffee Pot
+description: ""
+trigger:
+  - platform: time
+    at: "06:15:00"
+condition: []
+action:
+  - type: turn_on
+    device_id: 751258a83b71dc6d1b8102dd75aedd3e
+    entity_id: bc85422efd980d712fef050347614f1d
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 751258a83b71dc6d1b8102dd75aedd3e
+    entity_id: bc85422efd980d712fef050347614f1d
+    domain: switch
+mode: single

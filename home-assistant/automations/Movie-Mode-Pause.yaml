@@ -1,0 +1,38 @@
+alias: Movie Mode Pause
+description: ""
+trigger:
+  - platform: device
+    device_id: 9740bbcab565039940bba000fd826456
+    domain: media_player
+    entity_id: 82ef8ecd276eac8b6467aab84b76b095
+    type: paused
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+condition:
+  - condition: state
+    entity_id: input_boolean.movie_mode
+    state: "on"
+action:
+  - type: turn_on
+    device_id: 3c59d3807cd1590efa9ae3e4fa50005e
+    entity_id: a9685fb2644a46c987ec327cdcf5cda0
+    domain: light
+    brightness_pct: 70
+  - type: turn_on
+    device_id: 2f15920001aa4cf4526dcd2c4ae1d0ba
+    entity_id: 8e4421aade2af8343bd3d371ba88a936
+    domain: light
+    brightness_pct: 70
+  - type: turn_on
+    device_id: 1f109e1760410aa39a48145d1b471736
+    entity_id: 3d4ab3fe3cf9d4eb834772c652a3d8c7
+    domain: light
+    brightness_pct: 70
+  - type: turn_on
+    device_id: 675b724b9e45751d6a48f648fd0514d1
+    entity_id: d8d7623052a3f9bbfbc870c9d04d3655
+    domain: light
+    brightness_pct: 70
+mode: single
