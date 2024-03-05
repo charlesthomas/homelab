@@ -1,5 +1,0 @@
-name: intel-gpu-device-plugin
-
-image:
-  hub: intel
-  tag: ""
