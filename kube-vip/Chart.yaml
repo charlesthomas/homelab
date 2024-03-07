@@ -1,5 +1,0 @@
-apiVersion: v2
-description: deploy kube-vip in ARP mode to create a virtual ip for connecting into the cluster with kubectl
-name: kube-vip
-type: application
-version: 0.1.1
