@@ -9,50 +9,83 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 - disaster recovery
   - [Was the raft log corrupted, truncated, or lost?](/docs/dr/raft.md)
 
-## services
+# services
 
-- k8s fanciness
-  - [descheduler](/descheduler/)
-  - [external-secrets](/external-secrets/)
-  - [node-feature-discovery](/node-feature-discovery)
-  - [reloader](/reloader/)
-- networking & routing
-  - [external-dns](/external-dns/)
-  - [kube-vip](/kube-vip/)
-  - [metallb](/metallb/)
-  - [pihole](/pihole/)
-- storage
-  - [longhorn](/longhorn/)
-  - [nfs](/nfs/)
-  - [offsite-backups](/offsite-backups/)
-- ssl & reverse proxy-ing
-  - [cert-manager](/cert-manager/)
-  - nginx
-    - [crt.house](/nginx-crt-house/)
-    - [crt.lol](/nginx-crt-lol/)
-    - [external](/nginx-external/)
-- observability
-  - [grafana](/grafana/)
-  - [influxdb2](/influxdb2/)
-  - [loki](/loki/)
-  - [promtail](/promtail/)
-  - [telegraf](/telegraf/)
-- home automation
-  - [home-assistant](/home-assistant/)
-  - [mosquitto](/mosquitto/)
-  - [zigbee2mqtt](/zigbee2mqtt/)
-- media
-  - [metube](/metube/)
-  - plex
-    - [plex](/plex/)
-    - intel plugins for hardware transcoding (see plex `README`)
-      - [intel-device-plugins-operator](/intel-device-plugins-operator/)
-      - [intel-device-plugins-gpu](/intel-device-plugins-gpu/)
-  - [prowlarr](/prowlarr/)
-  - [radarr](/radarr/)
-  - [rsync-seedbox](/rsync-seedbox/)
-  - [sonarr](/sonarr/)
-- misc
-  - [homepage](/homepage/) dashboard
-  - [shlink](/shlink/) link shortener
-  - [vault-warden](/vault-warden/) password manager
+## home-automation
+
+- [home-assistant](https://github.com/charlesthomas/homelab-home-assistant)
+- [mosquitto](https://github.com/charlesthomas/homelab-mosquitto)
+- [zigbee2mqtt](https://github.com/charlesthomas/homelab-zigbee2mqtt)
+
+## infrastructure
+
+
+### cicd
+
+- [argocd](https://github.com/charlesthomas/homelab-argocd)
+- [stack](https://github.com/charlesthomas/homelab-stack)
+
+### http
+
+- [cert-manager](https://github.com/charlesthomas/homelab-cert-manager)
+- [nginx-external](https://github.com/charlesthomas/homelab-nginx-external)
+- [nginx-internal](https://github.com/charlesthomas/homelab-nginx-internal)
+
+### kubernetes
+
+- [external-secrets](https://github.com/charlesthomas/homelab-external-secrets)
+- [reloader](https://github.com/charlesthomas/homelab-reloader)
+
+### observability
+
+- [disk-usage-monitor](https://github.com/charlesthomas/homelab-disk-usage-monitor)
+- [grafana](https://github.com/charlesthomas/homelab-grafana)
+- [influxdb](https://github.com/charlesthomas/homelab-influxdb)
+- [loki](https://github.com/charlesthomas/homelab-loki)
+- [ntfy.sh](https://github.com/charlesthomas/homelab-ntfy.sh)
+- [promtail](https://github.com/charlesthomas/homelab-promtail)
+- [telegraf](https://github.com/charlesthomas/homelab-telegraf)
+- [uptime-kuma](https://github.com/charlesthomas/homelab-uptime-kuma)
+
+### routing
+
+- [external-dns-cloudflare](https://github.com/charlesthomas/homelab-external-dns-cloudflare)
+- [external-dns-pihole](https://github.com/charlesthomas/homelab-external-dns-pihole)
+- [kube-vip](https://github.com/charlesthomas/homelab-kube-vip)
+- [metallb](https://github.com/charlesthomas/homelab-metallb)
+- [pihole](https://github.com/charlesthomas/homelab-pihole)
+
+### storage
+
+- [longhorn](https://github.com/charlesthomas/homelab-longhorn)
+- [nfs-subdir-external-provisioner](https://github.com/charlesthomas/homelab-nfs-subdir-external-provisioner)
+- [offsite-backups](https://github.com/charlesthomas/homelab-offsite-backups)
+
+## media
+
+- [intel-device-plugins-gpu](https://github.com/charlesthomas/homelab-intel-device-plugins-gpu)
+- [intel-device-plugins-operator](https://github.com/charlesthomas/homelab-intel-device-plugins-operator)
+- [jellyfin](https://github.com/charlesthomas/homelab-jellyfin)
+- [metube](https://github.com/charlesthomas/homelab-metube)
+- [prowlarr](https://github.com/charlesthomas/homelab-prowlarr)
+- [radarr](https://github.com/charlesthomas/homelab-radarr)
+- [readarr](https://github.com/charlesthomas/homelab-readarr)
+- [rsync-seedbox](https://github.com/charlesthomas/homelab-rsync-seedbox)
+- [sonarr](https://github.com/charlesthomas/homelab-sonarr)
+
+## meta
+
+- [homelab-template](https://github.com/charlesthomas/homelab-template)
+- [homelab](https://github.com/charlesthomas/homelab)
+
+## misc
+
+- [actualbudget](https://github.com/charlesthomas/homelab-actualbudget)
+- [code-server](https://github.com/charlesthomas/homelab-code-server)
+- [homepage](https://github.com/charlesthomas/homelab-homepage)
+- [vault-warden](https://github.com/charlesthomas/homelab-vault-warden)
+
+## public
+
+- [shlink](https://github.com/charlesthomas/homelab-shlink)
+- [wordpress-cha.rlesthom.as](https://github.com/charlesthomas/homelab-wordpress-cha.rlesthom.as)

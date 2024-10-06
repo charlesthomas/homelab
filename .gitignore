@@ -3,3 +3,4 @@
 stock-values.yaml
 grafana/etc-dashboards.yaml
 external-secrets/charts/
+tmp/
