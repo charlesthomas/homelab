@@ -1,0 +1,21 @@
+name: update README
+
+on:
+  push:
+    paths:
+      - .github/workflows/update-readme.yaml
+  schedule:
+    - cron: 0 0 * * 3
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: generate_list.bash
+        run: bin/generate_list.bash
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}

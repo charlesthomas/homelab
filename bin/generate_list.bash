@@ -1,7 +1,15 @@
 #!/bin/bash
+set -e
+
+for cmd in "gh git jq"; do
+    x=$(which $cmd)
+    if [[ "${x}" == "" ]]; then
+        echo $cmd not installed
+        exit 1
+    fi
+done
 
 mkdir -p tmp/infra
-cat .readme.header.md > README.md
 
 if [ ! -e tmp/raw.json ]; then
     gh repo list \
@@ -12,6 +20,8 @@ if [ ! -e tmp/raw.json ]; then
     --json name,repositoryTopics,url \
     > tmp/raw.json
 fi
+
+cat .readme.header.md > README.md
 
 for line in $(cat tmp/raw.json | jq -r '.[] | "\(.name),\(.url),\(.repositoryTopics[1].name)"'); do
     repo=$(echo $line | cut -f 1 -d ,)
@@ -38,7 +48,9 @@ for line in $(cat tmp/raw.json | jq -r '.[] | "\(.name),\(.url),\(.repositoryTop
     fi
 done
 
-for f in $(ls tmp/infra/*.md | sort); do
+list=$(ls tmp/infra/*.md | sort)
+[[ "${list}" == "" ]] && exit 1
+for f in $list; do
     sub=$(basename $f | cut -f 1 -d .)
     echo >> tmp/infrastructure.md
     echo "### ${sub}" >> tmp/infrastructure.md
@@ -47,7 +59,9 @@ for f in $(ls tmp/infra/*.md | sort); do
 done
 rm -rf tmp/infra/
 
-for f in $(ls tmp/*.md | sort); do
+list=$(ls tmp/*.md | sort)
+[[ "${list}" == "" ]] && exit 1
+for f in $list; do
     echo >> README.md
     section=$(basename $f | cut -f 1 -d .)
     echo "## ${section}" >> README.md
@@ -59,3 +73,9 @@ for f in $(ls tmp/*.md | sort); do
     fi
 done
 rm -rf tmp/*.md
+
+[ $(git status --porcelain README.md | wc -l) -eq 0 ] && exit 0
+
+git add README.md
+git commit -m "docs: update readme"
+git push
