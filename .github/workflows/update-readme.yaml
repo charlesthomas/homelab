@@ -5,7 +5,9 @@ on:
     paths:
       - .github/workflows/update-readme.yaml
   schedule:
-    - cron: 0 2 * * *
+    - cron: 0 3 * * *
+
+permissions: write-all
 
 jobs:
   update-readme:
