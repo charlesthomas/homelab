@@ -67,6 +67,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 - [intel-device-plugins-gpu](https://github.com/charlesthomas/homelab-intel-device-plugins-gpu)
 - [intel-device-plugins-operator](https://github.com/charlesthomas/homelab-intel-device-plugins-operator)
 - [jellyfin](https://github.com/charlesthomas/homelab-jellyfin)
+- [kavita](https://github.com/charlesthomas/homelab-kavita)
 - [metube](https://github.com/charlesthomas/homelab-metube)
 - [prowlarr](https://github.com/charlesthomas/homelab-prowlarr)
 - [radarr](https://github.com/charlesthomas/homelab-radarr)
