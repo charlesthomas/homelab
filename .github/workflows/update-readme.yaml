@@ -5,7 +5,7 @@ on:
     paths:
       - .github/workflows/update-readme.yaml
   schedule:
-    - cron: 0 0 * * 3
+    - cron: 0 2 * * *
 
 jobs:
   update-readme:
@@ -19,3 +19,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           OWNER: ${{ github.repository_owner }}
           REPO: ${{ github.event.repository.name }}
+          GIT_AUTHOR_NAME: Charles Thomas
+          GIT_COMMITTER_NAME: Charles Thomas
+          GIT_AUTHOR_EMAIL: ch@rlesthom.as
+          GIT_COMMITTER_EMAIL: ch@rlesthom.as
