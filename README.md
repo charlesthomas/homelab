@@ -58,7 +58,6 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 ### storage
 
 - [longhorn](https://github.com/charlesthomas/homelab-longhorn)
-- [nfs-subdir-external-provisioner](https://github.com/charlesthomas/homelab-nfs-subdir-external-provisioner)
 - [offsite-backups](https://github.com/charlesthomas/homelab-offsite-backups)
 
 ## media

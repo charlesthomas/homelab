@@ -5,22 +5,19 @@ cluster storage is provided via two mechanisms:
 1. distributed block storage via [longhorn](/longhorn/)
 1. [nfs](/nfs/)
 
+## backups
+
+All longhorn PVCs (regardless of reclaim policy) are snapshotted daily, and backed up weekly.
+14 snapshots and 52 backups are kept. Backups are written to nas01:/volume1/critical/, which is rsynced offsite daily to nas02.
+
 ## storageClasses
 
 - `longhorn`
   - default storage class
-  - provides distributed storage across the cluster
-  - replica size 2 inside the cluster
-  - NO additional redundancy
-    - including offsite backup
-- `nfs-critical`
-  - maps to `nfs://nas01/critical`
-  - offsite backup to `nas02`
-  - 7TB quota
-- `nfs-k3s`
-  - maps to `nfs://nas01/k3s`
-  - NO offsite backup
-  - no quota
+  - replica size 3
+- `longhorn-retain`
+  - replica size 3
+  - reclaim policy set to retain
 
 ## fixing node partition size
 for some reason, my minimal Ubuntu server install created 100GB volumes on a 256GB drive
