@@ -83,7 +83,6 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 ## misc
 
 - [actualbudget](https://github.com/charlesthomas/homelab-actualbudget)
-- [code-server](https://github.com/charlesthomas/homelab-code-server)
 - [homepage](https://github.com/charlesthomas/homelab-homepage)
 - [vault-warden](https://github.com/charlesthomas/homelab-vault-warden)
 
