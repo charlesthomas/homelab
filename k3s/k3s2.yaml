@@ -1,0 +1,13 @@
+cluster-init: false
+disable:
+  - traefik
+  - servicelb
+node-label:
+  - "control-plane=true"
+  - "etcd=true"
+server: https://192.168.1.10:6443
+tls-san:
+  - 192.168.1.10
+  - k3s.local
+token-file: /home/k3s/token
+write-kubeconfig-mode: "0644"
