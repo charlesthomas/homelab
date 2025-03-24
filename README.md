@@ -28,6 +28,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 ### http
 
 - [cert-manager](https://github.com/charlesthomas/homelab-cert-manager)
+- [external-ingresses](https://github.com/charlesthomas/homelab-external-ingresses)
 - [nginx-external](https://github.com/charlesthomas/homelab-nginx-external)
 - [nginx-internal](https://github.com/charlesthomas/homelab-nginx-internal)
 
