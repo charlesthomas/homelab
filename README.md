@@ -86,6 +86,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 
 - [actualbudget](https://github.com/charlesthomas/homelab-actualbudget)
 - [changedetection.io](https://github.com/charlesthomas/homelab-changedetection.io)
+- [code-server](https://github.com/charlesthomas/homelab-code-server)
 - [homepage](https://github.com/charlesthomas/homelab-homepage)
 - [vault-warden](https://github.com/charlesthomas/homelab-vault-warden)
 
