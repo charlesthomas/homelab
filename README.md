@@ -28,6 +28,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 ### http
 
 - [cert-manager](https://github.com/charlesthomas/homelab-cert-manager)
+- [external-ingresses](https://github.com/charlesthomas/homelab-external-ingresses)
 - [nginx-external](https://github.com/charlesthomas/homelab-nginx-external)
 - [nginx-internal](https://github.com/charlesthomas/homelab-nginx-internal)
 
@@ -38,13 +39,16 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 
 ### observability
 
+- [disk-usage-monitor](https://github.com/charlesthomas/homelab-disk-usage-monitor)
 - [grafana](https://github.com/charlesthomas/homelab-grafana)
 - [influxdb](https://github.com/charlesthomas/homelab-influxdb)
 - [kuma-ingress-watcher](https://github.com/charlesthomas/homelab-kuma-ingress-watcher)
 - [loki](https://github.com/charlesthomas/homelab-loki)
+- [ntfy.sh](https://github.com/charlesthomas/homelab-ntfy.sh)
 - [prometheus](https://github.com/charlesthomas/homelab-prometheus)
 - [promtail](https://github.com/charlesthomas/homelab-promtail)
 - [telegraf](https://github.com/charlesthomas/homelab-telegraf)
+- [uptime-kuma](https://github.com/charlesthomas/homelab-uptime-kuma)
 
 ### routing
 
@@ -60,15 +64,18 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 
 ## media
 
+- [flaresolverr](https://github.com/charlesthomas/homelab-flaresolverr)
 - [foundry-vtt](https://github.com/charlesthomas/homelab-foundry-vtt)
 - [intel-device-plugins-gpu](https://github.com/charlesthomas/homelab-intel-device-plugins-gpu)
 - [intel-device-plugins-operator](https://github.com/charlesthomas/homelab-intel-device-plugins-operator)
 - [jellyfin](https://github.com/charlesthomas/homelab-jellyfin)
 - [jellyseerr](https://github.com/charlesthomas/homelab-jellyseerr)
 - [kavita](https://github.com/charlesthomas/homelab-kavita)
+- [lidarr](https://github.com/charlesthomas/homelab-lidarr)
 - [metube](https://github.com/charlesthomas/homelab-metube)
 - [prowlarr](https://github.com/charlesthomas/homelab-prowlarr)
 - [radarr](https://github.com/charlesthomas/homelab-radarr)
+- [readarr](https://github.com/charlesthomas/homelab-readarr)
 - [sonarr](https://github.com/charlesthomas/homelab-sonarr)
 
 ## meta
@@ -78,6 +85,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 
 ## misc
 
+- [actualbudget](https://github.com/charlesthomas/homelab-actualbudget)
 - [changedetection.io](https://github.com/charlesthomas/homelab-changedetection.io)
 - [code-server](https://github.com/charlesthomas/homelab-code-server)
 - [homepage](https://github.com/charlesthomas/homelab-homepage)
@@ -86,3 +94,4 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 ## public
 
 - [shlink](https://github.com/charlesthomas/homelab-shlink)
+- [wordpress-cha.rlesthom.as](https://github.com/charlesthomas/homelab-wordpress-cha.rlesthom.as)
