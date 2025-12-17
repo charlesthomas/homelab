@@ -76,6 +76,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 - [radarr](https://github.com/charlesthomas/homelab-radarr)
 - [readarr](https://github.com/charlesthomas/homelab-readarr)
 - [sonarr](https://github.com/charlesthomas/homelab-sonarr)
+- [tdarr](https://github.com/charlesthomas/homelab-tdarr)
 
 ## meta
 
