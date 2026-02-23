@@ -61,6 +61,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 ### storage
 
 - [longhorn](https://github.com/charlesthomas/homelab-longhorn)
+- [offsite-backups](https://github.com/charlesthomas/homelab-offsite-backups)
 
 ## media
 
