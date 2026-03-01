@@ -71,6 +71,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 - [jellyfin](https://github.com/charlesthomas/homelab-jellyfin)
 - [jellyplex-watched](https://github.com/charlesthomas/homelab-jellyplex-watched)
 - [jellyseerr](https://github.com/charlesthomas/homelab-jellyseerr)
+- [jellystat](https://github.com/charlesthomas/homelab-jellystat)
 - [kavita](https://github.com/charlesthomas/homelab-kavita)
 - [lidarr](https://github.com/charlesthomas/homelab-lidarr)
 - [metube](https://github.com/charlesthomas/homelab-metube)
