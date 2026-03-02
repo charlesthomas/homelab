@@ -78,6 +78,7 @@ instructions, manifests, scripts, etc for my home lab running on k3s
 - [prowlarr](https://github.com/charlesthomas/homelab-prowlarr)
 - [radarr](https://github.com/charlesthomas/homelab-radarr)
 - [readarr](https://github.com/charlesthomas/homelab-readarr)
+- [rsync-seedbox](https://github.com/charlesthomas/homelab-rsync-seedbox)
 - [sonarr](https://github.com/charlesthomas/homelab-sonarr)
 - [tdarr](https://github.com/charlesthomas/homelab-tdarr)
 
